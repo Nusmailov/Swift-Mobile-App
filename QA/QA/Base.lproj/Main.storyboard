@@ -43,7 +43,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="xkr-nP-trc" kind="show" id="psh-bt-2K9"/>
+                                    <segue destination="xkr-nP-trc" kind="show" identifier="Education" id="u0Q-wy-73A"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcK-vx-mWW">
@@ -55,7 +55,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="xkr-nP-trc" kind="show" id="Ezu-2E-Nt7"/>
+                                    <segue destination="xkr-nP-trc" kind="show" identifier="Sport" id="hMg-hV-Xk2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRH-Hr-29n">
@@ -67,18 +67,18 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="xkr-nP-trc" kind="show" id="S68-Mt-i0D"/>
+                                    <segue destination="xkr-nP-trc" kind="show" identifier="History" id="gqZ-RO-eNa"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xaF-zp-JkJ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" badgeValue="Я" systemItem="mostViewed" id="r9a-TL-ZY5"/>
+                    <navigationItem key="navigationItem" id="IjB-gJ-uO9"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z4k-Mp-fTq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="220" y="-473.6131934032984"/>
+            <point key="canvasLocation" x="1162.4000000000001" y="-473.64532019704433"/>
         </scene>
         <!--Question View Controller-->
         <scene sceneID="Jrj-Vx-wC0">
@@ -141,7 +141,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="yvf-ia-zEY" kind="show" id="AHP-gU-Ovp"/>
+                                    <segue destination="yAM-dV-AEe" kind="show" id="AHP-gU-Ovp"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -152,7 +152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FkN-au-Fyh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1164" y="-470.68965517241384"/>
+            <point key="canvasLocation" x="2106.4000000000001" y="-470.68965517241384"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Rlz-ms-gN1">
@@ -164,7 +164,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     </tabBar>
                     <connections>
-                        <segue destination="yvf-ia-zEY" kind="relationship" relationship="viewControllers" id="Vg7-xV-4SE"/>
+                        <segue destination="yAM-dV-AEe" kind="relationship" relationship="viewControllers" id="Vg7-xV-4SE"/>
                         <segue destination="3bb-gG-hbl" kind="relationship" relationship="viewControllers" id="UXO-8J-N6b"/>
                     </connections>
                 </tabBarController>
@@ -172,9 +172,28 @@
             </objects>
             <point key="canvasLocation" x="-732" y="-141"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jIc-IK-ZuD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yAM-dV-AEe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" badgeValue="Я" systemItem="mostViewed" id="r9a-TL-ZY5"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lyg-IK-245">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yvf-ia-zEY" kind="relationship" relationship="rootViewController" id="2gm-rW-D9I"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bIr-HJ-sna" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="220" y="-474"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="psh-bt-2K9"/>
         <segue reference="AHP-gU-Ovp"/>
+        <segue reference="hMg-hV-Xk2"/>
     </inferredMetricsTieBreakers>
 </document>
