@@ -9,13 +9,14 @@
 import UIKit
 
 class CategoryViewController: UIViewController {
-    var informationEducation: Question?
+    var informationEducation: Question!
     var informationSport: Question?
     var informationHistory: Question?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadInformation(number: 9)
         loadInformation(number: 21)
         loadInformation(number: 23)
@@ -25,17 +26,23 @@ class CategoryViewController: UIViewController {
         if segue.identifier == "Education"{
             if let cvc = segue.destination as? QuestionViewController{
                 loadInformation(number: 9)
-                cvc.information = self.informationEducation
+                if(self.informationEducation != nil){
+                    cvc.information = self.informationEducation
+                }
             }
         }else if segue.identifier == "Sport"{
             if let cvc = segue.destination as? QuestionViewController{
                 loadInformation(number: 21)
-                cvc.information = self.informationSport
+                if(self.informationSport != nil){
+                    cvc.information = self.informationSport
+                }
             }
         }else if segue.identifier == "History"{
             if let cvc = segue.destination as? QuestionViewController{
                 loadInformation(number: 23)
-                cvc.information = self.informationHistory
+                if(self.informationHistory != nil){
+                    cvc.information = self.informationHistory
+                }
             }
         }
     }
@@ -52,7 +59,7 @@ class CategoryViewController: UIViewController {
                     self.informationEducation = jsonHolder
                 }else if(number == 21){
                     self.informationSport = jsonHolder
-                }else{
+                }else if(number == 23){
                     self.informationHistory = jsonHolder
                 }
             }catch let error{

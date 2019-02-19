@@ -1,7 +1,4 @@
-//
-//  Question.swift
-//  Model Generated using http://www.jsoncafe.com/
-//  Created on February 17, 2019
+
 
 import Foundation
 
