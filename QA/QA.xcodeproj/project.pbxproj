@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F534A46B221B240100A79D76 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F534A46A221B240100A79D76 /* CategoryViewController.swift */; };
+		F542BA0E221C9AFB00F2DB8B /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F542BA0D221C9AFB00F2DB8B /* ResultViewController.swift */; };
 		F563AF7E2216DFCF003D7E2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563AF7D2216DFCF003D7E2A /* AppDelegate.swift */; };
 		F563AF802216DFCF003D7E2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F563AF7F2216DFCF003D7E2A /* ViewController.swift */; };
 		F563AF832216DFCF003D7E2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F563AF812216DFCF003D7E2A /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		F534A46A221B240100A79D76 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		F542BA0D221C9AFB00F2DB8B /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		F563AF7A2216DFCF003D7E2A /* QA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F563AF7D2216DFCF003D7E2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F563AF7F2216DFCF003D7E2A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				F563AF7F2216DFCF003D7E2A /* ViewController.swift */,
 				F563AF932216F4F1003D7E2A /* QuestionViewController.swift */,
 				F534A46A221B240100A79D76 /* CategoryViewController.swift */,
+				F542BA0D221C9AFB00F2DB8B /* ResultViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				F57CC4AA2219A9DF00D3FA6A /* Question.swift in Sources */,
 				F563AF802216DFCF003D7E2A /* ViewController.swift in Sources */,
 				F534A46B221B240100A79D76 /* CategoryViewController.swift in Sources */,
+				F542BA0E221C9AFB00F2DB8B /* ResultViewController.swift in Sources */,
 				F563AF7E2216DFCF003D7E2A /* AppDelegate.swift in Sources */,
 				F563AF992216F601003D7E2A /* CategoryViewCell.swift in Sources */,
 				F57CC4AE2219AE5C00D3FA6A /* Result.swift in Sources */,
