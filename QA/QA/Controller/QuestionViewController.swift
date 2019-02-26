@@ -9,13 +9,16 @@
 import UIKit
 
 class QuestionViewController: UIViewController {
-    var information: Question!
+    var information: Question?
     var cnt = 0;
     var rightAnswer = 0
     
     @IBOutlet weak var questionText: UILabel!
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var questionNumber: UILabel!
+    let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
+    var infoDef = [History]()
+    var defaults = UserDefaults.standard
     
     @IBAction func touchButtons(_ sender: UIButton) {
         print(cnt)
@@ -31,15 +34,24 @@ class QuestionViewController: UIViewController {
                     i.backgroundColor  = UIColor.green
                 }
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
-                for i in self.buttons{
-                    i.backgroundColor  = UIColor.black
+            if(cnt != 20){
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    for i in self.buttons{
+                        i.backgroundColor  = UIColor.black
+                    }
+                    self.reloadQuestion()
                 }
-                self.reloadQuestion()
+            }
+            if(cnt == 20){
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+                    let homeView = self.storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
+                    self.present(homeView, animated: true, completion: nil)
+                }
             }
         }else{
             finishTap();
         }
+        print(rightAnswer)
     }
     
     override func viewDidLoad() {
@@ -49,9 +61,18 @@ class QuestionViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = finishButton
         reloadQuestion()
     }
+    
     @objc func finishTap(){
-        
         let homeView = self.storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
+        homeView.rightAnswersCount = rightAnswer
+        homeView.wrongAnswersCount = 20 - rightAnswer
+        // Markdown -- Save Informations
+        
+        self.infoDef.append(History(rightAnswer, 20 - rightAnswer))
+        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: infoDef)
+        defaults.set(encodedData, forKey: "HistorySaved")
+        defaults.synchronize()
+        print("Defaults + \n \(defaults)")
         present(homeView, animated: true, completion: nil)
     }
     
@@ -59,17 +80,31 @@ class QuestionViewController: UIViewController {
         var variants = [String]()
         variants.removeAll()
         if(cnt < 20){
-            for i in (information!.results?[cnt].incorrectAnswers)!{
-                variants.append(i)
+            activityCycle()
+            if information?.results != nil {
+                activityIndicator.stopAnimating()
+                for i in (information!.results?[cnt].incorrectAnswers)!{
+                    variants.append(i)
+                }
+                variants.append((information!.results?[cnt].correctAnswer)!)
+                variants.shuffle()
+                for i in 0..<buttons.count{
+                    buttons[i].setTitle(variants[i], for: .normal)
+                }
+                questionText.text = information!.results?[cnt].question
+                cnt+=1
             }
-            variants.append((information!.results?[cnt].correctAnswer)!)
-            variants.shuffle()
-            for i in 0..<buttons.count{
-                buttons[i].setTitle(variants[i], for: .normal)
-            }
-            questionText.text = information!.results?[cnt].question
-            cnt+=1
+            
         }
         questionNumber.text = "\(cnt)/20"
+    }
+    func activityCycle(){
+        activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)])
+        activityIndicator.startAnimating()
     }
 }

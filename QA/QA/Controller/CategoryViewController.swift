@@ -12,7 +12,7 @@ class CategoryViewController: UIViewController {
     var informationEducation: Question!
     var informationSport: Question?
     var informationHistory: Question?
-    
+    let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,18 @@ class CategoryViewController: UIViewController {
             }
         }
     }
-    
+    func activityCycle(){
+        activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+        
+        // Position it at the center of the ViewController.
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)])
+        activityIndicator.startAnimating()
+        
+    }
     
     func loadInformation(number: Int){
         let jsonUrl = "https://opentdb.com/api.php?amount=20&category=\(number)&difficulty=medium&type=multiple"
