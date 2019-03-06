@@ -44,7 +44,22 @@ class AddContactViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
             return
         }
-        let contact = Contact.init(name: firstnameField.text ?? "", lastname: lastnameField.text ?? "", phone: phoneField.text ?? "", tag: .red)
+        var tagger:TagColor
+        switch tagPicker.text {
+            case "green":
+                tagger = TagColor.green
+            case "red":
+                tagger = TagColor.red
+            case "blue":
+                tagger = TagColor.blue
+            case "yellow":
+                tagger = TagColor.yellow
+            case "orange":
+                tagger = TagColor.orange
+            default: tagger = TagColor.red
+            
+        }
+        let contact = Contact.init(name: firstnameField.text ?? "", lastname: lastnameField.text ?? "", phone: phoneField.text ?? "", tag: tagger)
         delegate?.didCreateContact(contact: contact)
         self.navigationController?.popViewController(animated: true)
     }
@@ -83,7 +98,7 @@ extension AddContactViewController: UIPickerViewDelegate, UIPickerViewDataSource
     }
     
     @objc func dissmissKey(){
-        view.endEditing(true)
+//         view.endEditing(true)
     }
     
 }

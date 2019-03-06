@@ -13,21 +13,29 @@ class ContactViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var contacts = [Contact]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fillOutContact()
         tableView.tableFooterView = UIView(frame: .zero)
+        
         let addButton = UIBarButtonItem.init(title: "Add", style: .done, target: self, action: #selector(addTapped))
         self.navigationItem.rightBarButtonItem = addButton
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     @objc func addTapped() {
         let controller = storyboard?.instantiateViewController(withIdentifier: "AddContactViewController") as! AddContactViewController
         controller.delegate = self
         self.navigationController?.pushViewController(controller, animated: true)
     }
-    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
+    }
     func fillOutContact(){
         contacts.append(Contact(name: "Nurzhigt", lastname: "Smailov", phone: "+77071969686", tag: .blue))
         contacts.append(Contact(name: "Alisher", lastname: "Qalqa", phone: "+77079812893", tag: .green))
