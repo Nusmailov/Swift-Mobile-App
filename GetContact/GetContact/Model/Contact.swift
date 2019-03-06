@@ -28,4 +28,19 @@ class Contact{
         self.phone = phone
         self.tag = tag
     }
+    
+    required convenience init(coder aDecoder: NSCoder) {
+        let name = aDecoder.decodeObject(forKey: "name") as! String
+        let lastname = aDecoder.decodeObject(forKey: "lastname") as! String
+        let phone = aDecoder.decodeObject(forKey: "phone") as! String
+        let tag = aDecoder.decodeObject(forKey: "tag") as! TagColor
+        self.init(name: name, lastname: lastname, phone: phone, tag: tag)
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(name, forKey: "name")
+        aCoder.encode(lastname, forKey: "lastname")
+        aCoder.encode(phone, forKey: "phone")
+        aCoder.encode(tag, forKey: "tag")
+    }
 }

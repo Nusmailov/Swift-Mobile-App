@@ -20,6 +20,7 @@ class AddContactViewController: UIViewController {
     @IBOutlet weak var firstnameField: UITextField!
     @IBOutlet weak var phoneField: UITextField!
     @IBOutlet weak var lastnameField: UITextField!
+    var defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,8 +60,19 @@ class AddContactViewController: UIViewController {
             default: tagger = TagColor.red
             
         }
+        
         let contact = Contact.init(name: firstnameField.text ?? "", lastname: lastnameField.text ?? "", phone: phoneField.text ?? "", tag: tagger)
         delegate?.didCreateContact(contact: contact)
+        
+        //before
+//        let decoded = defaults.object(forKey: "savedContacts") as! Data
+//        var decodedTeams = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Contact]
+//        decodedTeams.append(contact)
+        //after
+//        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: decodedTeams)
+//        self.defaults.set(encodedData, forKey: "savedContacts")
+//        self.defaults.synchronize()
+        
         self.navigationController?.popViewController(animated: true)
     }
 }
