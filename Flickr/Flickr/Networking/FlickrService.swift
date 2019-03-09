@@ -11,11 +11,11 @@ import Alamofire
 import SwiftyJSON
 
 class FlickrService{
-    var urlToPhoto = "http://farm8.staticflickr.com/7875/32359703437_5ec8499022.jpg"
-    var mainUrl = "http://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg"
+//    var urlToPhoto = "http://farm8.staticflickr.com/7875/32359703437_5ec8499022.jpg"
+//    var mainUrl = "http://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg"
     
     static func getInfoList(success: @escaping ([Photos]) -> Void, failure: @escaping (Error) -> Void) {
-        let url = URL.init(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=3f7b5e1c65ba1c971b4bfef98953332f&format=json&nojsoncallback%20=1")
+        let url = URL.init(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=9f342dc0b2edfea383debb95782fd39e&format=json&nojsoncallback=1&api_sig=73f8da583d6907820e9c8b7ac30373c2")
         
         Alamofire.request(url!,
                           parameters: nil,
@@ -25,7 +25,6 @@ class FlickrService{
                     case .success(let val):
                         let posts = JSON(val)["photos"].arrayValue
                         var res = [Photos]()
-                        
                         for json in posts {
                             res.append(Photos.init(json: json))
                         }

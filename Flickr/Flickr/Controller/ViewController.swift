@@ -7,12 +7,29 @@
 //
 
 import UIKit
+import SVProgressHUD
+import Alamofire
 
 class ViewController: UIViewController {
-
+    var info = [Photos]()
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        //loadInfo()
+    }
+    func loadInfo(){
+        SVProgressHUD.show()
+        FlickrService.getInfoList(success: { (info) in
+            SVProgressHUD.dismiss()
+            self.info = info
+            self.collectionView.reloadData()
+            print(self.info)
+            print("done")
+        }) { (error) in
+            SVProgressHUD.dismiss()
+            print("error")
+        }
     }
     
 

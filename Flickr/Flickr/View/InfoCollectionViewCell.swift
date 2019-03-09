@@ -10,5 +10,4 @@ import UIKit
 
 class InfoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var text: UILabel!
-    
 }
