@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F564D7C22236BB87003844FE /* ContactPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F564D7C12236BB87003844FE /* ContactPresenter.swift */; };
+		F564D7C42236C6E0003844FE /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F564D7C32236C6E0003844FE /* ColorCollectionViewCell.swift */; };
 		F5A337342227C6DD006CBCAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A337332227C6DD006CBCAE /* AppDelegate.swift */; };
 		F5A337392227C6DD006CBCAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5A337372227C6DD006CBCAE /* Main.storyboard */; };
 		F5A3373B2227C6E0006CBCAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5A3373A2227C6E0006CBCAE /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F564D7C12236BB87003844FE /* ContactPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPresenter.swift; sourceTree = "<group>"; };
+		F564D7C32236C6E0003844FE /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
 		F5A337302227C6DD006CBCAE /* GetContact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetContact.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5A337332227C6DD006CBCAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5A337382227C6DD006CBCAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				F5A3374A2227C9D1006CBCAE /* Contact.swift */,
+				F564D7C12236BB87003844FE /* ContactPresenter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -101,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				F5A3374D2227C9E8006CBCAE /* ContactTableViewCell.swift */,
+				F564D7C32236C6E0003844FE /* ColorCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -177,6 +183,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5A3374B2227C9D1006CBCAE /* Contact.swift in Sources */,
+				F564D7C42236C6E0003844FE /* ColorCollectionViewCell.swift in Sources */,
+				F564D7C22236BB87003844FE /* ContactPresenter.swift in Sources */,
 				F5A3374E2227C9E8006CBCAE /* ContactTableViewCell.swift in Sources */,
 				F5A337502227CE5E006CBCAE /* AddContactViewController.swift in Sources */,
 				F5A337342227C6DD006CBCAE /* AppDelegate.swift in Sources */,

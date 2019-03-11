@@ -14,20 +14,19 @@ class ContactViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var contacts = [Contact]()
     var defaults = UserDefaults.standard
+    private let cellReuseIdentifier = "collectionCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fillOutContact()
         tableView.tableFooterView = UIView(frame: .zero)
         
         let addButton = UIBarButtonItem.init(title: "Add", style: .done, target: self, action: #selector(addTapped))
         self.navigationItem.rightBarButtonItem = addButton
         self.navigationItem.leftBarButtonItem = self.editButtonItem
-        
         tableView.dataSource = self
         tableView.delegate = self
-        
     }
+    
     @objc func addTapped() {
         let controller = storyboard?.instantiateViewController(withIdentifier: "AddContactViewController") as! AddContactViewController
         controller.delegate = self
@@ -38,22 +37,12 @@ class ContactViewController: UIViewController {
         tableView.setEditing(editing, animated: animated)
     }
     
-    func fillOutContact(){
-        contacts.append(Contact(name: "Nurzhigt", lastname: "Smailov", phone: "+77071969686", tag: .blue))
-        contacts.append(Contact(name: "Alisher", lastname: "Qalqa", phone: "+77079812893", tag: .green))
-        contacts.append(Contact(name: "Elibay", lastname: "Poltos", phone: "+77079812893", tag: .blue))
-        contacts.append(Contact(name: "Askhat", lastname: "Borya", phone: "+77079812893", tag: .blue))
-      //  let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: contacts)
-      // self.defaults.set(encodedData, forKey: "savedContacts")
-        self.defaults.synchronize()
-    }
     func loadFromDefaults(){
         let decoded = defaults.object(forKey: "savedContacts") as! Data
         self.contacts = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Contact]
     }
     
 }
-
 
 extension ContactViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,5 +73,3 @@ extension ContactViewController : AddContactDelegate {
         tableView.reloadData()
     }
 }
-
-

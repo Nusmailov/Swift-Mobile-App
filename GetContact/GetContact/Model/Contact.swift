@@ -20,7 +20,7 @@ class Contact{
     var name: String
     var lastname: String
     var phone: String
-    var tag: TagColor
+    var tag: TagColor?
     
     init(name: String, lastname: String, phone: String, tag: TagColor){
         self.name = name
@@ -28,6 +28,12 @@ class Contact{
         self.phone = phone
         self.tag = tag
     }
+    init(name: String, lastname: String, phone: String){
+        self.name = name
+        self.lastname = lastname
+        self.phone = phone
+    }
+  
     
     required convenience init(coder aDecoder: NSCoder) {
         let name = aDecoder.decodeObject(forKey: "name") as! String

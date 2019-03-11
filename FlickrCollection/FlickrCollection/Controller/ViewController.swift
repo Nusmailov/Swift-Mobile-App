@@ -13,6 +13,7 @@ import SDWebImage
 class ViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
     var photos = [Photo]()
     var images = [UIImage]()
     
@@ -43,15 +44,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PhotoCollectionViewCell
         let photo = photos[indexPath.item]
         cell.imageView!.sd_setImage(with:photo.getImageUrl())
-        
         return cell
-        
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-
         let photo = photos[indexPath.item]
-
         let vc = DetailViewController.instantiate(photo: photo)
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -59,8 +57,5 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
     }
-    
-   
-    
 }
 

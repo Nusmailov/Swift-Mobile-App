@@ -14,20 +14,22 @@ protocol AddContactDelegate {
 
 class AddContactViewController: UIViewController {
     var delegate: AddContactDelegate?
-    var colors  = ["green", "red", "blue", "yellow", "orange"]
+    var colors  = ["green", "red", "blue", "yellow", "orange", "gray"]
+    fileprivate let cellId = "colorCell"
     
-    @IBOutlet weak var tagPicker: UITextField!
-    @IBOutlet weak var firstnameField: UITextField!
-    @IBOutlet weak var phoneField: UITextField!
-    @IBOutlet weak var lastnameField: UITextField!
+    var tagPicker: UITextField!
+    var firstnameField: UITextField!
+    var phoneField: UITextField!
+    var lastnameField: UITextField!
+    
     var defaults = UserDefaults.standard
-    
+    var collectionView: UICollectionView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        let addButton = UIBarButtonItem.init(title: "Add", style: .done, target: self, action: #selector(addTapped))
-        self.navigationItem.rightBarButtonItem = addButton
-        createPickerColor()
-        dissmissKey()
+        setupCollectionView()
+        setupFields()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Add", style: .done, target: self, action: #selector(addTapped))
     }
     
     @objc func addTapped() {
@@ -45,72 +47,71 @@ class AddContactViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
             return
         }
-        var tagger:TagColor
-        switch tagPicker.text {
-            case "green":
-                tagger = TagColor.green
-            case "red":
-                tagger = TagColor.red
-            case "blue":
-                tagger = TagColor.blue
-            case "yellow":
-                tagger = TagColor.yellow
-            case "orange":
-                tagger = TagColor.orange
-            default: tagger = TagColor.red
-            
-        }
-        
-        let contact = Contact.init(name: firstnameField.text ?? "", lastname: lastnameField.text ?? "", phone: phoneField.text ?? "", tag: tagger)
+        let contact = Contact.init(name: firstnameField.text ?? "", lastname: lastnameField.text ?? "", phone: phoneField.text ?? "")
         delegate?.didCreateContact(contact: contact)
-        
-        //before
-//        let decoded = defaults.object(forKey: "savedContacts") as! Data
-//        var decodedTeams = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Contact]
-//        decodedTeams.append(contact)
-        //after
-//        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: decodedTeams)
-//        self.defaults.set(encodedData, forKey: "savedContacts")
-//        self.defaults.synchronize()
-        
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    fileprivate func setupCollectionView(){
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 300, left: 30, bottom: 0, right:30)
+        layout.itemSize = CGSize(width: 40, height: 40)
+        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.backgroundColor = .white
+        collectionView.register(ColorCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        view.addSubview(collectionView)
+    }
+    
+    fileprivate func setupFields(){
+        let y = (self.navigationController?.navigationBar.frame.maxY)! + 30
+        firstnameField = UITextField(frame: CGRect(x: 10, y: y + 10, width: view.frame.width - 20, height: 40))
+        firstnameField.borderStyle = UITextField.BorderStyle.roundedRect
+        firstnameField.placeholder = "First Name"
+        view.addSubview(firstnameField)
+        
+        lastnameField = UITextField(frame: CGRect(x: 10, y: y + 60, width: view.frame.width - 20, height: 40))
+        lastnameField.borderStyle = UITextField.BorderStyle.roundedRect
+        lastnameField.placeholder = "Last Name"
+        view.addSubview(lastnameField)
+        
+        phoneField = UITextField(frame: CGRect(x: 10, y: y + 110, width: view.frame.width - 20, height: 40))
+        phoneField.borderStyle = UITextField.BorderStyle.roundedRect
+        phoneField.placeholder = "Phone"
+        phoneField.keyboardType = .namePhonePad
+        view.addSubview(phoneField)
+    }
+    func getColor(item: Int) -> UIColor{
+        switch item {
+        case 0:
+            return UIColor.yellow
+        case 1:
+            return UIColor.blue
+        case 2:
+            return UIColor.orange
+        case 3:
+            return UIColor.green
+        case 4:
+            return UIColor.red
+        case 5:
+            return UIColor.gray
+        default:
+            UIColor.yellow
+        }
+        return UIColor.yellow
     }
 }
 
-
-extension AddContactViewController: UIPickerViewDelegate, UIPickerViewDataSource,  UITextFieldDelegate{
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+extension AddContactViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return colors.count
     }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return colors[row]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ColorCollectionViewCell
+        cell.backgroundColor = getColor(item: indexPath.item)
+        cell.layer.cornerRadius = min(cell.frame.size.height, cell.frame.size.width) / 2.0
+        cell.layer.masksToBounds = true
+        return cell
     }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selected = colors[row]
-        tagPicker.text = selected
-    }
-    
-    func createPickerColor(){
-        let pickerView = UIPickerView()
-        pickerView.delegate = self
-        tagPicker.inputView = pickerView
-    }
-    func dissmissPicker(){
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.dissmissKey))
-        toolBar.setItems([doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
-        tagPicker.inputAccessoryView = toolBar
-    }
-    
-    @objc func dissmissKey(){
-//         view.endEditing(true)
-    }
-    
 }
