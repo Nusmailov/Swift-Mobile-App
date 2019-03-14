@@ -9,9 +9,21 @@
 import UIKit
 
 class ColorCollectionViewCell: UICollectionViewCell {
-    let circlePath = UIBezierPath(arcCenter: CGPoint(x: 0,y: 0), radius: CGFloat(10), startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(image)
+        image.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 40, height: 40, enableInsets: false)
+    }
     
-    var image = UIImage()
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
-    
+    var image: UIImageView = {
+        let img =  UIImageView()
+        img.contentMode = .scaleAspectFit
+        img.clipsToBounds = true
+        return  img
+    }()
 }

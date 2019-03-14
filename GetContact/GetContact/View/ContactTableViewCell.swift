@@ -24,6 +24,8 @@ class ContactTableViewCell: UITableViewCell {
     func generateCell(contact: Contact){
         self.name.text = "\(contact.lastname) \(contact.name)"
         self.phone.text = contact.phone
-        self.tagImage.image = UIImage(named: "\(contact.tag)")
+        if let tag = contact.tag{
+            self.tagImage.image = UIImage(named: "\(tag)")
+        }
     }
 }

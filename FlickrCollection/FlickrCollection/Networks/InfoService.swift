@@ -20,22 +20,23 @@ class InfoService{
         var params = [String:Any]()
         
         params["method"] = "flickr.photos.getRecent"
-        params["api_key"] = "4e656a1f2146e8088f59755b8682c6c8"
+        params["api_key"] = "e95c68bda6354323712d972796eb22b6"
         params["format"] = "json"
         params["nojsoncallback"] = "1"
-        params["per_page"] = "10"
-        params["api_sig"] = "1f3474893fd9633d451a9287df159a3c"
-        params["page"] = "10"
+        params["per_page"] = "100"
+        params["api_sig"] = "4141a191fb9e8cebc963937745d3c479"
+//        params["page"] = "10"
         
         Alamofire.request(url!,
                           parameters: params,
                           headers: nil)
             .responseJSON { response in
-                print(url)
+                print(url!)
                 switch response.result {
                     case .success(let val):
                         let info = JSON(val)["photos"]["photo"].arrayValue
                         var res = [Photo]()
+                        print(info)
                         for i in info{
                             res.append(Photo.init(json: i))
                         }

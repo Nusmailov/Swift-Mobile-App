@@ -14,6 +14,8 @@ enum TagColor {
     case blue
     case yellow
     case orange
+    case gray
+    case none
 }
 
 class Contact{
@@ -28,12 +30,6 @@ class Contact{
         self.phone = phone
         self.tag = tag
     }
-    init(name: String, lastname: String, phone: String){
-        self.name = name
-        self.lastname = lastname
-        self.phone = phone
-    }
-  
     
     required convenience init(coder aDecoder: NSCoder) {
         let name = aDecoder.decodeObject(forKey: "name") as! String
@@ -49,4 +45,5 @@ class Contact{
         aCoder.encode(phone, forKey: "phone")
         aCoder.encode(tag, forKey: "tag")
     }
+    
 }

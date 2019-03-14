@@ -14,9 +14,10 @@ protocol AddContactDelegate {
 
 class AddContactViewController: UIViewController {
     var delegate: AddContactDelegate?
-    var colors  = ["green", "red", "blue", "yellow", "orange", "gray"]
+    var colors  = [TagColor.yellow, TagColor.blue, TagColor.orange, TagColor.green, TagColor.red, TagColor.gray]
+    var colorTypes = [UIColor.yellow,UIColor.blue,UIColor.orange, UIColor.green, UIColor.red, UIColor.gray ]
     fileprivate let cellId = "colorCell"
-    
+    var cells = [ColorCollectionViewCell]()
     var tagPicker: UITextField!
     var firstnameField: UITextField!
     var phoneField: UITextField!
@@ -25,6 +26,7 @@ class AddContactViewController: UIViewController {
     var defaults = UserDefaults.standard
     var collectionView: UICollectionView!
 
+    var selectedColor: TagColor?
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
@@ -47,7 +49,20 @@ class AddContactViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
             return
         }
-        let contact = Contact.init(name: firstnameField.text ?? "", lastname: lastnameField.text ?? "", phone: phoneField.text ?? "")
+       
+        var index = -1
+        var tag: TagColor
+        for i in 0 ..< cells.count{
+            if cells[i].image.image != nil{
+                index = i
+            }
+        }
+        if index == -1 {
+           tag = TagColor.none
+        }else{
+            tag = colors[index]
+        }
+        let contact = Contact.init(name: firstnameField.text ?? "", lastname: lastnameField.text ?? "", phone: phoneField.text ?? "",tag: tag)
         delegate?.didCreateContact(contact: contact)
         self.navigationController?.popViewController(animated: true)
     }
@@ -59,7 +74,6 @@ class AddContactViewController: UIViewController {
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = .white
         collectionView.register(ColorCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         view.addSubview(collectionView)
     }
@@ -82,36 +96,33 @@ class AddContactViewController: UIViewController {
         phoneField.keyboardType = .namePhonePad
         view.addSubview(phoneField)
     }
-    func getColor(item: Int) -> UIColor{
-        switch item {
-        case 0:
-            return UIColor.yellow
-        case 1:
-            return UIColor.blue
-        case 2:
-            return UIColor.orange
-        case 3:
-            return UIColor.green
-        case 4:
-            return UIColor.red
-        case 5:
-            return UIColor.gray
-        default:
-            UIColor.yellow
-        }
-        return UIColor.yellow
-    }
+   
 }
 
 extension AddContactViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return colors.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ColorCollectionViewCell
-        cell.backgroundColor = getColor(item: indexPath.item)
+        cell.backgroundColor = colorTypes[indexPath.item]
         cell.layer.cornerRadius = min(cell.frame.size.height, cell.frame.size.width) / 2.0
         cell.layer.masksToBounds = true
+        if selectedColor == colors[indexPath.item] {
+            cell.image.image = UIImage(named: "check")
+        }else{
+            cell.image.image = nil
+        }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if selectedColor == colors[indexPath.item]{
+            selectedColor = nil
+        } else {
+            selectedColor = colors[indexPath.item]
+        }
+        collectionView.reloadData()
     }
 }

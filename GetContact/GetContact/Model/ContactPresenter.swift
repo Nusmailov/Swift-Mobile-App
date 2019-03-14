@@ -11,6 +11,7 @@ import Foundation
 class ContactPresenter{
     public weak var view: ContactView?
     var contacts = [Contact]()
+    
     func getContacts(){
         view?.showLoading()
         contacts.append(Contact(name: "Nurzhigt", lastname: "Smailov", phone: "+77071969686", tag: .blue))
@@ -20,7 +21,6 @@ class ContactPresenter{
         view?.hideLoading()
         view?.showContacts(contacts: contacts)
     }
-    
 }
 protocol ContactView: BaseView {
     func showContacts(contacts: [Contact])

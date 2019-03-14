@@ -17,6 +17,7 @@
 		F5A3374B2227C9D1006CBCAE /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3374A2227C9D1006CBCAE /* Contact.swift */; };
 		F5A3374E2227C9E8006CBCAE /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3374D2227C9E8006CBCAE /* ContactTableViewCell.swift */; };
 		F5A337502227CE5E006CBCAE /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3374F2227CE5E006CBCAE /* AddContactViewController.swift */; };
+		F5EB7838223A5810005432EF /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EB7837223A5810005432EF /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		F5A3374A2227C9D1006CBCAE /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		F5A3374D2227C9E8006CBCAE /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		F5A3374F2227CE5E006CBCAE /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
+		F5EB7837223A5810005432EF /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			children = (
 				F5A3374A2227C9D1006CBCAE /* Contact.swift */,
 				F564D7C12236BB87003844FE /* ContactPresenter.swift */,
+				F5EB7837223A5810005432EF /* Extension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				F5A337502227CE5E006CBCAE /* AddContactViewController.swift in Sources */,
 				F5A337342227C6DD006CBCAE /* AppDelegate.swift in Sources */,
 				F5A337482227C782006CBCAE /* ContactViewController.swift in Sources */,
+				F5EB7838223A5810005432EF /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

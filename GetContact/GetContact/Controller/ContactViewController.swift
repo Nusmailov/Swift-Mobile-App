@@ -13,16 +13,19 @@ class ContactViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var contacts = [Contact]()
+    var contactPresenter = ContactPresenter()
     var defaults = UserDefaults.standard
     private let cellReuseIdentifier = "collectionCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView(frame: .zero)
-        
+        contactPresenter.view = self
+        contactPresenter.getContacts()
         let addButton = UIBarButtonItem.init(title: "Add", style: .done, target: self, action: #selector(addTapped))
         self.navigationItem.rightBarButtonItem = addButton
         self.navigationItem.leftBarButtonItem = self.editButtonItem
+        
         tableView.dataSource = self
         tableView.delegate = self
     }
@@ -41,7 +44,6 @@ class ContactViewController: UIViewController {
         let decoded = defaults.object(forKey: "savedContacts") as! Data
         self.contacts = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Contact]
     }
-    
 }
 
 extension ContactViewController: UITableViewDelegate, UITableViewDataSource{
@@ -56,6 +58,7 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource{
         }
         return ContactTableViewCell()
     }
+    
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
@@ -71,5 +74,23 @@ extension ContactViewController : AddContactDelegate {
     func didCreateContact(contact: Contact) {
         contacts.append(contact)
         tableView.reloadData()
+    }
+}
+
+extension ContactViewController: ContactView{
+    func showContacts(contacts: [Contact]) {
+        self.contacts = contacts
+    }
+    
+    func showLoading() {
+        print("showing")
+    }
+    
+    func hideLoading() {
+        print("hided")
+    }
+    
+    func showError(message: String) {
+        print(message)
     }
 }

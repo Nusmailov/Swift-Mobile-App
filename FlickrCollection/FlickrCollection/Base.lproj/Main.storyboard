@@ -78,19 +78,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vPT-BJ-daL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vPT-BJ-daL">
                                 <rect key="frame" x="67" y="113" width="240" height="179"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cON-KD-20U">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cON-KD-20U">
                                 <rect key="frame" x="67" y="323" width="240" height="81"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vPT-BJ-daL" firstAttribute="leading" secondItem="eby-q7-XXR" secondAttribute="leading" constant="67" id="EGv-qV-gwF"/>
+                            <constraint firstItem="eby-q7-XXR" firstAttribute="trailing" secondItem="vPT-BJ-daL" secondAttribute="trailing" constant="68" id="GMY-hl-UQR"/>
+                            <constraint firstItem="cON-KD-20U" firstAttribute="leading" secondItem="eby-q7-XXR" secondAttribute="leading" constant="67" id="SL7-r0-dD4"/>
+                            <constraint firstItem="vPT-BJ-daL" firstAttribute="top" secondItem="eby-q7-XXR" secondAttribute="top" constant="93" id="XYS-s1-Wcb"/>
+                            <constraint firstItem="eby-q7-XXR" firstAttribute="trailing" secondItem="cON-KD-20U" secondAttribute="trailing" constant="68" id="juz-ps-pMC"/>
+                            <constraint firstItem="cON-KD-20U" firstAttribute="top" secondItem="vPT-BJ-daL" secondAttribute="bottom" constant="31" id="xcq-3v-e5b"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="eby-q7-XXR"/>
                     </view>
                     <connections>
