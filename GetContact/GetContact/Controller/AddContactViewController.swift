@@ -1,10 +1,3 @@
-//
-//  AddContactViewController.swift
-//  GetContact
-//
-//  Created by Nurzhigit Smailov on 2/28/19.
-//  Copyright © 2019 Nurzhigit Smailov. All rights reserved.
-//
 
 import UIKit
 
@@ -25,8 +18,9 @@ class AddContactViewController: UIViewController {
     
     var defaults = UserDefaults.standard
     var collectionView: UICollectionView!
-
+     var index = -1
     var selectedColor: TagColor?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
@@ -50,13 +44,8 @@ class AddContactViewController: UIViewController {
             return
         }
        
-        var index = -1
+       
         var tag: TagColor
-        for i in 0 ..< cells.count{
-            if cells[i].image.image != nil{
-                index = i
-            }
-        }
         if index == -1 {
            tag = TagColor.none
         }else{
@@ -66,7 +55,6 @@ class AddContactViewController: UIViewController {
         delegate?.didCreateContact(contact: contact)
         self.navigationController?.popViewController(animated: true)
     }
-    
     fileprivate func setupCollectionView(){
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 300, left: 30, bottom: 0, right:30)
@@ -77,7 +65,6 @@ class AddContactViewController: UIViewController {
         collectionView.register(ColorCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         view.addSubview(collectionView)
     }
-    
     fileprivate func setupFields(){
         let y = (self.navigationController?.navigationBar.frame.maxY)! + 30
         firstnameField = UITextField(frame: CGRect(x: 10, y: y + 10, width: view.frame.width - 20, height: 40))
@@ -96,7 +83,6 @@ class AddContactViewController: UIViewController {
         phoneField.keyboardType = .namePhonePad
         view.addSubview(phoneField)
     }
-   
 }
 
 extension AddContactViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -111,6 +97,7 @@ extension AddContactViewController: UICollectionViewDelegate, UICollectionViewDa
         cell.layer.masksToBounds = true
         if selectedColor == colors[indexPath.item] {
             cell.image.image = UIImage(named: "check")
+            index = indexPath.item
         }else{
             cell.image.image = nil
         }
@@ -120,6 +107,7 @@ extension AddContactViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if selectedColor == colors[indexPath.item]{
             selectedColor = nil
+            index = -1
         } else {
             selectedColor = colors[indexPath.item]
         }

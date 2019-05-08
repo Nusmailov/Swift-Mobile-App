@@ -32,11 +32,9 @@ extension UserViewController : UserView{
     }
     
     func showLoading() {
-        
     }
     
     func hideLoading() {
-        
     }
     
     func showError(message: String) {

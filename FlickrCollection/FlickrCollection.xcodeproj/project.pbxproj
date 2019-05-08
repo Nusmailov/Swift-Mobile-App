@@ -17,6 +17,9 @@
 		F580ED4E2231558800A3A003 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580ED4D2231558800A3A003 /* Photo.swift */; };
 		F580ED5422315AD100A3A003 /* InfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580ED5322315AD100A3A003 /* InfoService.swift */; };
 		F580ED56223170AE00A3A003 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580ED55223170AE00A3A003 /* DetailViewController.swift */; };
+		F59A9C15224A4A1D00AF61BF /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59A9C14224A4A1D00AF61BF /* Contact.swift */; };
+		F59A9C19224A4A6000AF61BF /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59A9C18224A4A6000AF61BF /* ContactViewModel.swift */; };
+		F59A9C1B224A4A7B00AF61BF /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59A9C1A224A4A7B00AF61BF /* ContactViewController.swift */; };
 		F5D8D4E22233EE4D00B1D84F /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D8D4E12233EE4D00B1D84F /* UserViewController.swift */; };
 		F5D8D4E42233EE9D00B1D84F /* UserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D8D4E32233EE9D00B1D84F /* UserPresenter.swift */; };
 		F5D8D4E62233F86200B1D84F /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D8D4E52233F86200B1D84F /* BaseView.swift */; };
@@ -37,6 +40,9 @@
 		F580ED4D2231558800A3A003 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		F580ED5322315AD100A3A003 /* InfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoService.swift; sourceTree = "<group>"; };
 		F580ED55223170AE00A3A003 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		F59A9C14224A4A1D00AF61BF /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		F59A9C18224A4A6000AF61BF /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
+		F59A9C1A224A4A7B00AF61BF /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		F5D8D4E12233EE4D00B1D84F /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		F5D8D4E32233EE9D00B1D84F /* UserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresenter.swift; sourceTree = "<group>"; };
 		F5D8D4E52233F86200B1D84F /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -92,6 +98,7 @@
 		F580ED37223152D600A3A003 /* FlickrCollection */ = {
 			isa = PBXGroup;
 			children = (
+				F59A9C13224A4A0800AF61BF /* Contact */,
 				F5D8D4E02233EE2600B1D84F /* User */,
 				F580ED4C2231551F00A3A003 /* Networks */,
 				F580ED5222315A9C00A3A003 /* Model */,
@@ -145,6 +152,16 @@
 				F580ED4D2231558800A3A003 /* Photo.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F59A9C13224A4A0800AF61BF /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				F59A9C14224A4A1D00AF61BF /* Contact.swift */,
+				F59A9C18224A4A6000AF61BF /* ContactViewModel.swift */,
+				F59A9C1A224A4A7B00AF61BF /* ContactViewController.swift */,
+			);
+			path = Contact;
 			sourceTree = "<group>";
 		};
 		F5D8D4E02233EE2600B1D84F /* User */ = {
@@ -284,8 +301,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5D8D4E22233EE4D00B1D84F /* UserViewController.swift in Sources */,
+				F59A9C19224A4A6000AF61BF /* ContactViewModel.swift in Sources */,
 				F580ED3B223152D600A3A003 /* ViewController.swift in Sources */,
+				F59A9C15224A4A1D00AF61BF /* Contact.swift in Sources */,
 				F580ED39223152D600A3A003 /* AppDelegate.swift in Sources */,
+				F59A9C1B224A4A7B00AF61BF /* ContactViewController.swift in Sources */,
 				F580ED4E2231558800A3A003 /* Photo.swift in Sources */,
 				F580ED56223170AE00A3A003 /* DetailViewController.swift in Sources */,
 				F5D8D4E42233EE9D00B1D84F /* UserPresenter.swift in Sources */,
