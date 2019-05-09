@@ -13,101 +13,64 @@ import SVProgressHUD
 
 class NewsViewController: UIViewController {
     var movies = [Movie]()
-    let presenter = MoviePresenter()
-    fileprivate weak var collectionView: GeminiCollectionView!{
-        didSet {
-            let nib = UINib(nibName: cellIdentifier, bundle: nil)
-            collectionView.register(nib, forCellWithReuseIdentifier: cellIdentifier)
-            collectionView.backgroundColor = .clear
-            collectionView.delegate = self
-            collectionView.dataSource = self
-            
-            if #available(iOS 11.0, *) {
-                collectionView.contentInsetAdjustmentBehavior = .never
-            }
-            
-            collectionView.gemini
-                .rollRotationAnimation()
-                .rollEffect(rotationEffect)
-                .scale(0.7)
-        }
-    }
-    
-    private(set) var rotationEffect: RollRotationEffect = .rollUp
-    fileprivate let cellIdentifier = "ImageCollectionViewCell"
+    let tableView = UITableView(frame: .zero)
+    let cellID = "MovieNewsID"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .gray
         navigationItem.title = "News"
-        presenter.view = self
-        presenter.getMovies()
-        
-    }
-    func setupCollectionView(){
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        collectionView = GeminiCollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
-        
-    }
-}
-
-// MARK: - UICollectionViewDelegate
-extension NewsViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let cell = cell as? GeminiCell {
-            self.collectionView.animateCell(cell)
-        }
-    }
-}
-
-// MARK: - UIScrollViewDelegate
-extension NewsViewController {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        collectionView.animateVisibleCells()
-    }
-}
-
-// MARK: - UICollectionViewDataSource
-extension NewsViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        loadInfo()
+        setupTableView()
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+    func loadInfo() {
+        SVProgressHUD.show()
+        NewsNetwork.getInfo(success: { (info) in
+            SVProgressHUD.dismiss()
+            self.movies = info
+            self.tableView.reloadData()
+        }) { (error) in
+            SVProgressHUD.dismiss()
+            print("error")
+        }
+    }
+    
+    func setupTableView(){
+        tableView.register(MovieNewsTableViewCell.self, forCellReuseIdentifier: cellID)
+        tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        tableView.backgroundColor = .white
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.separatorStyle = .none
+        view.addSubview(tableView)
+    }
+}
+
+extension NewsViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)// as! ImageCollectionViewCell
-//        cell.configure(with: images[indexPath.row])
-//        self.collectionView.animateCell(cell)
-        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! MovieNewsTableViewCell
+        cell.backgroundColor = .white
+        tableView.rowHeight = view.frame.width
+        cell.selectionStyle = .none
+        cell.movieImageView.sd_setImage(with: movies[indexPath.row].getImageUrl())
+        cell.nameLabel.text =  movies[indexPath.item].title
+        if let  raiting = movies[indexPath.item].voteAverage{
+            cell.raitingLabel.text = "\(String(describing: raiting))"
+        }
+        cell.realizeDate.text = movies[indexPath.item].releaseDate
+        var rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 500, 100, 0)
+        if indexPath.row % 2 == 1{
+            rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 100, 0)
+        }
+        cell.alpha = 0
+        cell.layer.transform = rotationTransform
+        UIView.animate(withDuration: 1.0, animations: {cell.layer.transform = CATransform3DIdentity; cell.alpha = 1})
         return cell
-    }
-}
-
-
-extension NewsViewController: MovieView{
-    func showMovies(movies: [Movie]) {
-        self.movies = movies
-        
-    }
-    func showLoading() {
-        SVProgressHUD.show()
-    }
-    
-    func hideLoading() {
-        SVProgressHUD.dismiss()
-    }
-    
-    func showError(message: String) {
-        print(message)
     }
     
 }

@@ -32,6 +32,8 @@
 		F57D6A882282DA4A00506766 /* MoviePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57D6A872282DA4A00506766 /* MoviePresenter.swift */; };
 		F57D6A8A2282DA7600506766 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57D6A892282DA7600506766 /* BaseView.swift */; };
 		F57D6A8C2282E18E00506766 /* NewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57D6A8B2282E18E00506766 /* NewsCollectionViewCell.swift */; };
+		F57D6A8E2284199600506766 /* UICollectionViewPagingFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57D6A8D2284199600506766 /* UICollectionViewPagingFlowLayout.swift */; };
+		F57D6A902284207C00506766 /* MovieNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57D6A8F2284207C00506766 /* MovieNewsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		F57D6A872282DA4A00506766 /* MoviePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePresenter.swift; sourceTree = "<group>"; };
 		F57D6A892282DA7600506766 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		F57D6A8B2282E18E00506766 /* NewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollectionViewCell.swift; sourceTree = "<group>"; };
+		F57D6A8D2284199600506766 /* UICollectionViewPagingFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewPagingFlowLayout.swift; sourceTree = "<group>"; };
+		F57D6A8F2284207C00506766 /* MovieNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNewsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,7 @@
 			children = (
 				F57D6A892282DA7600506766 /* BaseView.swift */,
 				F57D6A462281A43B00506766 /* ViewController.swift */,
+				F57D6A562281A8D200506766 /* Source */,
 				F57D6A6B2282AC9000506766 /* Models */,
 				F57D6A682282A61400506766 /* Random */,
 				F57D6A652281B16100506766 /* Auth */,
@@ -125,7 +130,6 @@
 				F57D6A632281B13500506766 /* Collections */,
 				F57D6A622281B12A00506766 /* Profile */,
 				F57D6A612281B12200506766 /* History */,
-				F57D6A562281A8D200506766 /* Source */,
 				F57D6A482281A43B00506766 /* Main.storyboard */,
 				F57D6A502281A43C00506766 /* Info.plist */,
 			);
@@ -174,6 +178,7 @@
 				F57D6A662281B17B00506766 /* NewsViewController.swift */,
 				F57D6A7E2282D37A00506766 /* NewsNetwork.swift */,
 				F57D6A872282DA4A00506766 /* MoviePresenter.swift */,
+				F57D6A8D2284199600506766 /* UICollectionViewPagingFlowLayout.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				F57D6A8B2282E18E00506766 /* NewsCollectionViewCell.swift */,
+				F57D6A8F2284207C00506766 /* MovieNewsTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -319,6 +325,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Cinema/Pods-Cinema-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Gemini/Gemini.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -329,6 +336,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gemini.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -349,6 +357,7 @@
 				F57D6A8C2282E18E00506766 /* NewsCollectionViewCell.swift in Sources */,
 				F57D6A732282AD0F00506766 /* ProductionCountry.swift in Sources */,
 				F57D6A472281A43B00506766 /* ViewController.swift in Sources */,
+				F57D6A902284207C00506766 /* MovieNewsTableViewCell.swift in Sources */,
 				F57D6A582281AA4100506766 /* AuthViewController.swift in Sources */,
 				F57D6A5E2281AD6B00506766 /* AboutAppViewController.swift in Sources */,
 				F57D6A6F2282ACC300506766 /* Movie.swift in Sources */,
@@ -359,6 +368,7 @@
 				F57D6A792282AD7100506766 /* ProductionCompany.swift in Sources */,
 				F57D6A5A2281AA9700506766 /* ConfirmationCodeViewController.swift in Sources */,
 				F57D6A882282DA4A00506766 /* MoviePresenter.swift in Sources */,
+				F57D6A8E2284199600506766 /* UICollectionViewPagingFlowLayout.swift in Sources */,
 				F57D6A772282AD4500506766 /* BelongsToCollection.swift in Sources */,
 				F57D6A752282AD2E00506766 /* Genre.swift in Sources */,
 				F57D6A602281B11500506766 /* HistoryViewController.swift in Sources */,

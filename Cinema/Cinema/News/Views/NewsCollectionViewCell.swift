@@ -14,7 +14,8 @@ class NewsCollectionViewCell: GeminiCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func configure(with image: UIImage) {
+    
+    func configure(image: UIImage) {
         
     }
 }

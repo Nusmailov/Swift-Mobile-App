@@ -29,27 +29,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let profile = ProfileViewController()
         let profileNavController = UINavigationController(rootViewController: profile)
-        profileNavController.tabBarItem.title = "Profile"
+//        profileNavController.tabBarItem.title = "Profile"
         profileNavController.tabBarItem.image = UIImage(named: "avatar")
         
         let collections = FilmListViewController()
         let collectionsNavController = UINavigationController(rootViewController: collections)
-        collectionsNavController.tabBarItem.title = "Collections"
+//        collectionsNavController.tabBarItem.title = "Collections"
         collectionsNavController.tabBarItem.image = UIImage(named: "list")
         
         let history = HistoryViewController()
         let historyNavController = UINavigationController(rootViewController: history)
-        historyNavController.tabBarItem.title = "History"
+//        historyNavController.tabBarItem.title = "History"
         historyNavController.tabBarItem.image = UIImage(named: "history")
         
         let news = NewsViewController()
         let newsNavController = UINavigationController(rootViewController: news)
-        newsNavController.tabBarItem.title = "News"
+//        newsNavController.tabBarItem.title = "News"
         newsNavController.tabBarItem.image = UIImage(named: "house")
         
         let random = RandomViewController()
         let randomNavController = UINavigationController(rootViewController: random)
-        randomNavController.tabBarItem.title = "Random"
+//        randomNavController.tabBarItem.title = "Random"
         randomNavController.tabBarItem.image = UIImage(named: "shuffle_icon")
         
         tabBarController.viewControllers = [newsNavController, collectionsNavController,randomNavController, historyNavController, profileNavController]

@@ -24,7 +24,7 @@ class MoviePresenter {
                           parameters: params,
                           headers: nil)
             .responseJSON { response in
-                print(url!)
+//                print(url!)
                 switch response.result {
                 case .success(let val):
                     let info = JSON(val)["results"].array
@@ -37,9 +37,7 @@ class MoviePresenter {
                     print(error)
                 }
         }
-        
         view?.hideLoading()
-        
     }
 }
 

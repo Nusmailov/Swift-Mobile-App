@@ -11,4 +11,5 @@ target 'Cinema' do
   pod 'SVProgressHUD'
   pod 'Gemini'
   pod 'SnapKit'
+  pod 'SDWebImage'
 end

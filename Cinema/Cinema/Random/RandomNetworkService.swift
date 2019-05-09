@@ -20,7 +20,7 @@ class RandomNetworkService {
                           parameters: params,
                           headers: nil)
             .responseJSON { response in
-                print(url!)
+//                print(url!)
                 switch response.result {
                 case .success(let val):
                     let info = JSON(val)
