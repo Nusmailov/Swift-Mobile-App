@@ -10,11 +10,17 @@ import UIKit
 import Gemini
 import SVProgressHUD
 
-
 class NewsViewController: UIViewController {
     var movies = [Movie]()
     let tableView = UITableView(frame: .zero)
     let cellID = "MovieNewsID"
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +50,7 @@ class NewsViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.separatorStyle = .none
         view.addSubview(tableView)
+        tableView.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
     }
 }
 
@@ -52,14 +59,26 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource{
         return movies.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = MovieViewController()
+        if let title = movies[indexPath.item].title{
+            vc.navigationItem.title = "\(String(describing: title))"
+        }
+        vc.movie = movies[indexPath.item]
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! MovieNewsTableViewCell
         cell.backgroundColor = .white
         tableView.rowHeight = view.frame.width
         cell.selectionStyle = .none
+//        cell.movieImageView.sd_addActivityIndicator()
+//        cell.movieImageView.sd_showActivityIndicatorView()
         cell.movieImageView.sd_setImage(with: movies[indexPath.row].getImageUrl())
+//        cell.movieImageView.sd_removeActivityIndicator()
         cell.nameLabel.text =  movies[indexPath.item].title
-        if let  raiting = movies[indexPath.item].voteAverage{
+        if let raiting = movies[indexPath.item].voteAverage{
             cell.raitingLabel.text = "\(String(describing: raiting))"
         }
         cell.realizeDate.text = movies[indexPath.item].releaseDate
@@ -72,5 +91,4 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource{
         UIView.animate(withDuration: 1.0, animations: {cell.layer.transform = CATransform3DIdentity; cell.alpha = 1})
         return cell
     }
-    
 }

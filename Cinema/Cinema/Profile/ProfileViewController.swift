@@ -24,8 +24,8 @@ class ProfileViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
-        self.navigationController!.navigationBar.barTintColor = .white
+        view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        self.navigationController!.navigationBar.barTintColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         navigationItem.title = "Profile"
         setupProfileViews()
         setupSettingButtons()
@@ -39,8 +39,11 @@ class ProfileViewController: UIViewController {
             make.right.left.equalToSuperview()
             make.height.equalTo(100)
         }
+        let liner = line()
         profileBackView.addSubview(profileImageView)
         profileBackView.addSubview(phoneLabel)
+        profileBackView.addSubview(liner)
+        
         
         profileImageView.snp.makeConstraints { (make) in
             make.left.equalTo(profileBackView).offset(24)
@@ -59,7 +62,7 @@ class ProfileViewController: UIViewController {
         let colorGray = UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 0.2)
         let settingsButton = button(text: "Settings", color: colorGray)
         
-        let shareAppButton = button(text: "Share app", color: .white)
+        let shareAppButton = button(text: "Share app", color: colorGray)
         //Настройки
         view.addSubview(settingsButton)
         settingsButton.snp.makeConstraints { (make) in
@@ -80,8 +83,8 @@ class ProfileViewController: UIViewController {
         
         let faqButtoon = button(text: "FAQ", color: colorGray)
         let contactButton = button(text: "Contact with us",color: colorGray)
-        let aboutAppButton = button(text: "About App", color: .white)
-        let exitButton = button(text: "Exit", color: .white)
+        let aboutAppButton = button(text: "About App", color:  colorGray)
+        let exitButton = button(text: "Exit", color: colorGray)
         //Часто задаваемые вопросы
         view.addSubview(faqButtoon)
         view.addSubview(contactButton)
@@ -131,7 +134,7 @@ class ProfileViewController: UIViewController {
     }()
     let profileBackView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
         return view
     }()
     let phoneLabel: UILabel = {
@@ -143,9 +146,6 @@ class ProfileViewController: UIViewController {
         return label
     }()
     
-    
-    
-   
     func line() -> UIView {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 0.2)
@@ -154,10 +154,11 @@ class ProfileViewController: UIViewController {
     
     func button(text: String, color: UIColor) -> UIButton {
         let button = UIButton()
-        button.backgroundColor = .white
+        button.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
         
         let textIn = UILabel()
         textIn.text = text
+        textIn.textColor = .white
         textIn.font = UIFont(name: "Rubik-Regular", size: 14)
         textIn.font = textIn.font.withSize(14)
         

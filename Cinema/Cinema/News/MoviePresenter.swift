@@ -24,7 +24,6 @@ class MoviePresenter {
                           parameters: params,
                           headers: nil)
             .responseJSON { response in
-//                print(url!)
                 switch response.result {
                 case .success(let val):
                     let info = JSON(val)["results"].array
@@ -32,7 +31,6 @@ class MoviePresenter {
                         movies.append(Movie.init(json: i))
                     }
                     self.view?.showMovies(movies: movies)
-//                    print(movies, "get")
                 case .failure(let error):
                     print(error)
                 }

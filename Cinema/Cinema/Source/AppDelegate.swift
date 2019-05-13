@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setRootViewTabBar() {
         let tabBarController = UITabBarController()
-        tabBarController.tabBar.barTintColor = .white
-        tabBarController.tabBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        tabBarController.tabBar.barTintColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        tabBarController.tabBar.tintColor = .white
         tabBarController.tabBarItem.badgeColor = UIColor(hue: 0, saturation: 0, brightness: 0.62, alpha: 1.0)
         
         

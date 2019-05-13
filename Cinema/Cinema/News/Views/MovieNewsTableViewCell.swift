@@ -22,6 +22,7 @@ class MovieNewsTableViewCell: UITableViewCell {
     
     func setupViews(){
         contentView.addSubview(movieImageView)
+        contentView.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         movieImageView.snp.makeConstraints { (make) in
             make.top.left.equalToSuperview().offset(16)
             make.bottom.right.equalToSuperview().offset(-16)
@@ -37,7 +38,9 @@ class MovieNewsTableViewCell: UITableViewCell {
         movieImageView.addSubview(nameLabel)
         movieImageView.addSubview(realizeDate)
         nameLabel.snp.makeConstraints { (make) in
-            make.centerX.centerY.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(24)
+            make.right.equalToSuperview().offset(-24)
         }
         raitingView.snp.makeConstraints { (make) in
             make.top.left.equalToSuperview().offset(8)
@@ -59,6 +62,7 @@ class MovieNewsTableViewCell: UITableViewCell {
         image.layer.masksToBounds = true
         image.layer.cornerRadius = 20
         image.contentMode = .scaleAspectFill
+        image.backgroundColor = .white
         return image
     }()
     
@@ -96,6 +100,7 @@ class MovieNewsTableViewCell: UITableViewCell {
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont(name: "Helvetica-Bold", size: 18)//UIFont.boldSystemFont(ofSize: 24.0)
         label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
     
