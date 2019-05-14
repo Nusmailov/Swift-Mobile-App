@@ -37,6 +37,7 @@
 		F57D6A8A2282DA7600506766 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57D6A892282DA7600506766 /* BaseView.swift */; };
 		F57D6A8E2284199600506766 /* UICollectionViewPagingFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57D6A8D2284199600506766 /* UICollectionViewPagingFlowLayout.swift */; };
 		F57D6A902284207C00506766 /* MovieNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57D6A8F2284207C00506766 /* MovieNewsTableViewCell.swift */; };
+		F59D32D3228AC4490020D447 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D32D2228AC4490020D447 /* HistoryTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		F57D6A892282DA7600506766 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		F57D6A8D2284199600506766 /* UICollectionViewPagingFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewPagingFlowLayout.swift; sourceTree = "<group>"; };
 		F57D6A8F2284207C00506766 /* MovieNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNewsTableViewCell.swift; sourceTree = "<group>"; };
+		F59D32D2228AC4490020D447 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,20 +107,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F502F64622858E1C001F337B /* VIews */ = {
+		F502F64622858E1C001F337B /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				F533301922856D67000515E7 /* MoviePhotoTableViewCell.swift */,
 				F533301722856B3D000515E7 /* MovieDescriptionTableViewCell.swift */,
 			);
-			path = VIews;
+			name = Views;
+			path = ../Views;
 			sourceTree = "<group>";
 		};
 		F502F64722858E2C001F337B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				F5333015228568A4000515E7 /* MovieViewController.swift */,
-				F57D6A662281B17B00506766 /* NewsViewController.swift */,
+				F502F64622858E1C001F337B /* Views */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -136,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				F502F64722858E2C001F337B /* Controllers */,
-				F502F64622858E1C001F337B /* VIews */,
 			);
 			path = Description;
 			sourceTree = "<group>";
@@ -168,6 +170,7 @@
 				F57D6A6B2282AC9000506766 /* Models */,
 				F57D6A682282A61400506766 /* Random */,
 				F57D6A652281B16100506766 /* Auth */,
+				F502F64A22893B5F001F337B /* NetworkService */,
 				F57D6A642281B14200506766 /* News */,
 				F57D6A632281B13500506766 /* Collections */,
 				F57D6A622281B12A00506766 /* Profile */,
@@ -191,6 +194,7 @@
 		F57D6A612281B12200506766 /* History */ = {
 			isa = PBXGroup;
 			children = (
+				F59D32D1228AC4310020D447 /* Views */,
 				F57D6A5F2281B11500506766 /* HistoryViewController.swift */,
 			);
 			path = History;
@@ -216,9 +220,8 @@
 		F57D6A642281B14200506766 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				F502F64A22893B5F001F337B /* NetworkService */,
+				F59D32D0228ABDA20020D447 /* Controllers */,
 				F533301C22858CA2000515E7 /* Description */,
-				F57D6A802282D6D300506766 /* Views */,
 				F57D6A872282DA4A00506766 /* MoviePresenter.swift */,
 				F57D6A8D2284199600506766 /* UICollectionViewPagingFlowLayout.swift */,
 			);
@@ -260,6 +263,23 @@
 			isa = PBXGroup;
 			children = (
 				F57D6A8F2284207C00506766 /* MovieNewsTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F59D32D0228ABDA20020D447 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F57D6A662281B17B00506766 /* NewsViewController.swift */,
+				F57D6A802282D6D300506766 /* Views */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F59D32D1228AC4310020D447 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F59D32D2228AC4490020D447 /* HistoryTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -412,6 +432,7 @@
 				F57D6A772282AD4500506766 /* BelongsToCollection.swift in Sources */,
 				F57D6A752282AD2E00506766 /* Genre.swift in Sources */,
 				F57D6A602281B11500506766 /* HistoryViewController.swift in Sources */,
+				F59D32D3228AC4490020D447 /* HistoryTableViewCell.swift in Sources */,
 				F57D6A842282D90D00506766 /* RandomViewController.swift in Sources */,
 				F502F6492285B4CD001F337B /* MovieNetworkService.swift in Sources */,
 				F57D6A452281A43B00506766 /* AppDelegate.swift in Sources */,

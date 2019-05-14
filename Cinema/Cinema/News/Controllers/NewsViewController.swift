@@ -29,6 +29,7 @@ class NewsViewController: UIViewController {
         navigationItem.title = "News"
         loadInfo()
         setupTableView()
+        tableView.reloadData()
     }
     
     func loadInfo() {
@@ -87,6 +88,15 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource{
         }
         cell.alpha = 0
         cell.layer.transform = rotationTransform
+        cell.movie_id = movies[indexPath.item].id
+        let defaults = UserDefaults.standard
+        let myarray = defaults.array(forKey: "movieidList")  as? [Int] ?? [Int]()
+        if myarray.contains(movies[indexPath.row].id){
+            cell.starButton.setImage(UIImage(named: "starGold"), for: .normal)
+        }else{
+            cell.starButton.setImage(UIImage(named: "star"), for: .normal)
+        }
+        
         UIView.animate(withDuration: 1.0, animations: {cell.layer.transform = CATransform3DIdentity; cell.alpha = 1})
         return cell
     }

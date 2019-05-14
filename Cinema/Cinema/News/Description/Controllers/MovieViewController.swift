@@ -24,6 +24,7 @@ class MovieViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        tableView.reloadData()
 //        
     }
     
@@ -59,6 +60,15 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource{
             }
             cell.nameLabel.text = movie?.title
             cell.realizeDate.text = movie?.releaseDate
+            cell.movie_id = movie?.id ?? -1
+            let defaults = UserDefaults.standard
+            let myarray = defaults.array(forKey: "movieidList")  as? [Int] ?? [Int]()
+            if myarray.contains(cell.movie_id){
+               cell.starButton.setImage(UIImage(named: "starGold"), for: .normal)
+            }else{
+                cell.starButton.setImage(UIImage(named: "star"), for: .normal)
+            }
+            
             return cell
         }else if indexPath.item == 1{
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MovieDescriptionTableViewCell

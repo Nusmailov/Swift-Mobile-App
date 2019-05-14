@@ -9,7 +9,7 @@
 import UIKit
 
 class MovieNewsTableViewCell: UITableViewCell {
-
+    var movie_id = Int()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
@@ -72,11 +72,26 @@ class MovieNewsTableViewCell: UITableViewCell {
     
     // MARK: Actions
     @objc func addToHistory(sender :UIButton){
-        
+        let defaults = UserDefaults.standard
+        var myarray = defaults.array(forKey: "movieidList")  as? [Int] ?? [Int]()
         if starButton.imageView?.image == UIImage(named: "star"){
             starButton.setImage(UIImage(named: "starGold"), for: .normal)
+            if !myarray.contains(movie_id){
+                //add element
+                myarray.append(movie_id)
+                print(myarray)
+            }
+            defaults.set(myarray, forKey: "movieidList")
         }else{
             starButton.setImage(UIImage(named: "star"), for: .normal)
+            let defaults = UserDefaults.standard
+            var myarray = defaults.array(forKey: "movieidList")  as? [Int] ?? [Int]()
+            if myarray.contains(movie_id){
+                //remove
+                myarray.remove(at: myarray.firstIndex(of: movie_id)!)
+                print(myarray)
+            }
+            defaults.set(myarray, forKey: "movieidList")
         }
     }
     
