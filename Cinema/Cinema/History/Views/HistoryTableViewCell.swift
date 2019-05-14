@@ -21,10 +21,17 @@ class HistoryTableViewCell: UITableViewCell {
     
     func setupViews(){
         contentView.addSubview(movieImage)
+        contentView.addSubview(titleLabel)
+
         movieImage.snp.makeConstraints { (make) in
             make.left.top.equalToSuperview().offset(8)
             make.bottom.equalToSuperview().offset(-8)
             make.width.equalTo(80)
+        }
+        titleLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(movieImage.snp.right).offset(8)
+            make.right.equalToSuperview().offset(-8)
+            make.centerY.equalToSuperview()
         }
     }
     let movieImage: UIImageView = {
@@ -36,7 +43,8 @@ class HistoryTableViewCell: UITableViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        
+        label.font = UIFont(name: "Helvetica-Bold", size: 20)//UIFont.boldSystemFont(ofSize: 24.0)
+        label.numberOfLines = 0
         return label
     }()
 }
