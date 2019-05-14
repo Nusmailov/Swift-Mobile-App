@@ -24,6 +24,7 @@ class MovieViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+//        
     }
     
     func setupTableView(){
@@ -39,13 +40,12 @@ class MovieViewController: UIViewController {
             make.top.equalToSuperview() //-UIApplication.shared.statusBarFrame.height
         }
         tableView.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
-        
     }
     
 }
 extension MovieViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -60,12 +60,20 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource{
             cell.nameLabel.text = movie?.title
             cell.realizeDate.text = movie?.releaseDate
             return cell
-        }else{
+        }else if indexPath.item == 1{
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MovieDescriptionTableViewCell
-            tableView.rowHeight = 100
+            tableView.rowHeight =  200
+            cell.descriptionLabel.text = movie?.overview
             cell.selectionStyle = .none
             return cell
         }
+        let cell = UITableViewCell()
+        cell.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        return cell
     }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+//    {
+//        return UITableView.automaticDimension
+//    }
     
 }

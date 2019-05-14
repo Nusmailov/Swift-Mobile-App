@@ -31,6 +31,18 @@ class MovieNewsTableViewCell: UITableViewCell {
         shadowView.snp.makeConstraints { (make) in
             make.right.left.top.bottom.equalToSuperview()
         }
+        
+        contentView.addSubview(starBackView)
+        starBackView.addSubview(starButton)
+        starBackView.snp.makeConstraints { (make) in
+            make.right.equalToSuperview().offset(-24)
+            make.top.equalToSuperview().offset(24)
+            make.height.width.equalTo(50)
+        }
+        starButton.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+            make.height.width.equalTo(40)
+        }
     }
     
     func setupWords(){
@@ -54,6 +66,18 @@ class MovieNewsTableViewCell: UITableViewCell {
             make.top.equalTo(nameLabel.snp.bottom).offset(8)
             make.centerX.equalTo(nameLabel)
         }
+        
+        
+    }
+    
+    // MARK: Actions
+    @objc func addToHistory(sender :UIButton){
+        
+        if starButton.imageView?.image == UIImage(named: "star"){
+            starButton.setImage(UIImage(named: "starGold"), for: .normal)
+        }else{
+            starButton.setImage(UIImage(named: "star"), for: .normal)
+        }
     }
     
     // MARK: Views
@@ -64,6 +88,21 @@ class MovieNewsTableViewCell: UITableViewCell {
         image.contentMode = .scaleAspectFill
         image.backgroundColor = .white
         return image
+    }()
+    lazy var starButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "star"), for: .normal)
+        button.isEnabled = true
+        button.addTarget(self, action: #selector(addToHistory(sender:)), for: .touchUpInside)
+        return button
+    }()
+    
+    let starBackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 25
+        return view
     }()
     
     let raitingView: UIView = {

@@ -16,7 +16,6 @@ class MoviePresenter {
     func getMovies() {
         view?.showLoading()
         var movies = [Movie]()
-        
         let url = URL.init(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=b593d4589446ff5105b0ae36eef4c312")
         let params = [String:Any]()
         

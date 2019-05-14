@@ -20,6 +20,8 @@ class NewsViewController: UIViewController {
 //        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        let sc = UISearchController(searchResultsController: nil)
+        navigationItem.searchController = sc
     }
     
     override func viewDidLoad() {
@@ -73,10 +75,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource{
         cell.backgroundColor = .white
         tableView.rowHeight = view.frame.width
         cell.selectionStyle = .none
-//        cell.movieImageView.sd_addActivityIndicator()
-//        cell.movieImageView.sd_showActivityIndicatorView()
         cell.movieImageView.sd_setImage(with: movies[indexPath.row].getImageUrl())
-//        cell.movieImageView.sd_removeActivityIndicator()
         cell.nameLabel.text =  movies[indexPath.item].title
         if let raiting = movies[indexPath.item].voteAverage{
             cell.raitingLabel.text = "\(String(describing: raiting))"

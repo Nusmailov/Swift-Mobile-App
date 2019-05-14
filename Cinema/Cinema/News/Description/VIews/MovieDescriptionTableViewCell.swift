@@ -21,6 +21,18 @@ class MovieDescriptionTableViewCell: UITableViewCell {
     }
     
     func setupViews(){
-        
+        addSubview(descriptionLabel)
+        descriptionLabel.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(10)
+            make.right.equalToSuperview().offset(-10)
+            make.height.greaterThanOrEqualTo(30)
+        }
     }
+    
+    let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .white
+        return label
+    }()
 }
