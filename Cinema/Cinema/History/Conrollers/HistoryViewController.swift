@@ -24,6 +24,7 @@ class HistoryViewController: UIViewController {
         loadInfo()
         setupTableView()
         addRefreshControl()
+        tableView.reloadData()
     }
     
     func setupTableView(){
@@ -40,27 +41,31 @@ class HistoryViewController: UIViewController {
         tableView.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
     }
     
-    @objc func loadInfo() {
+   func loadInfo() {
         SVProgressHUD.show()
         let defaults = UserDefaults.standard
         let myarray = defaults.array(forKey: "movieidList")  as? [Int] ?? [Int]()
+    
         for i in myarray{
             MovieNetworkService.getInfo(withId: i, success: { (movie) in
                 self.movies.append(movie)
-                
                 self.tableView.reloadData()
             }) { (error) in
                 print(error)
             }
         }
-        self.refreshControl?.endRefreshing()
+    
         SVProgressHUD.dismiss()
     }
-    
+     @objc func updateData(){
+        loadInfo()
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
+    }
     func addRefreshControl(){
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = .red
-        refreshControl?.addTarget(self, action: #selector(loadInfo), for: .touchUpInside)
+        refreshControl?.addTarget(self, action: #selector(updateData), for: .touchUpInside)
         tableView.addSubview(refreshControl!)
     }
 }
@@ -76,7 +81,6 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
         tableView.rowHeight = 100
         cell.selectionStyle = .none
         cell.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
-        
         //anitions
         let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 100, 0)
         cell.layer.transform = rotationTransform

@@ -70,7 +70,7 @@ class ProfileViewController: UIViewController {
             make.left.right.equalToSuperview()
             make.height.equalTo(view.frame.width/7)
         }
-        //Активировать промокод
+        
         
         
         //Поделиться приложением
@@ -141,7 +141,7 @@ class ProfileViewController: UIViewController {
         let label = UILabel()
         label.text = "Smailov Nurzhigit"
         label.font = UIFont(name: "RobotoMono-Medium", size: 20)
-        label.textColor = .black
+        label.textColor = .white
         label.font = label.font.withSize(20)
         return label
     }()

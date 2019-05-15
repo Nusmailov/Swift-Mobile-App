@@ -113,15 +113,13 @@
 				F533301922856D67000515E7 /* MoviePhotoTableViewCell.swift */,
 				F533301722856B3D000515E7 /* MovieDescriptionTableViewCell.swift */,
 			);
-			name = Views;
-			path = ../Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F502F64722858E2C001F337B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				F5333015228568A4000515E7 /* MovieViewController.swift */,
-				F502F64622858E1C001F337B /* Views */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -139,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				F502F64722858E2C001F337B /* Controllers */,
+				F502F64622858E1C001F337B /* Views */,
 			);
 			path = Description;
 			sourceTree = "<group>";
@@ -194,8 +193,8 @@
 		F57D6A612281B12200506766 /* History */ = {
 			isa = PBXGroup;
 			children = (
+				F59D32D4228AD6B70020D447 /* Conrollers */,
 				F59D32D1228AC4310020D447 /* Views */,
-				F57D6A5F2281B11500506766 /* HistoryViewController.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -220,6 +219,7 @@
 		F57D6A642281B14200506766 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				F57D6A802282D6D300506766 /* Views */,
 				F59D32D0228ABDA20020D447 /* Controllers */,
 				F533301C22858CA2000515E7 /* Description */,
 				F57D6A872282DA4A00506766 /* MoviePresenter.swift */,
@@ -271,7 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				F57D6A662281B17B00506766 /* NewsViewController.swift */,
-				F57D6A802282D6D300506766 /* Views */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -282,6 +281,14 @@
 				F59D32D2228AC4490020D447 /* HistoryTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F59D32D4228AD6B70020D447 /* Conrollers */ = {
+			isa = PBXGroup;
+			children = (
+				F57D6A5F2281B11500506766 /* HistoryViewController.swift */,
+			);
+			path = Conrollers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
