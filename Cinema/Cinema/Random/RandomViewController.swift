@@ -18,6 +18,8 @@ class RandomViewController: UIViewController {
         //        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     override func viewDidLoad() {

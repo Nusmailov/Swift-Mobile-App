@@ -18,13 +18,15 @@ class MovieViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        self.navigationController!.navigationBar.barTintColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
-        tableView.reloadData()
 //        
     }
     
@@ -35,6 +37,8 @@ class MovieViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 200
+        
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.right.left.bottom.equalToSuperview()
@@ -52,7 +56,6 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.item  == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: cellPhoto, for: indexPath) as! MoviePhotoTableViewCell
-            tableView.rowHeight = 300
             cell.selectionStyle = .none
             cell.movieImage.sd_setImage(with: movie?.getImageUrl())
             if let raiting = movie?.voteAverage{
@@ -72,7 +75,6 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource{
             return cell
         }else if indexPath.item == 1{
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MovieDescriptionTableViewCell
-            tableView.rowHeight =  200
             cell.descriptionLabel.text = movie?.overview
             cell.selectionStyle = .none
             return cell
@@ -81,9 +83,15 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource{
         cell.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         return cell
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-//    {
-//        return UITableView.automaticDimension
-//    }
     
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 300
+        } else if indexPath.row == 1 {
+            return UITableView.automaticDimension
+        }
+        
+        return 0
+    }
 }

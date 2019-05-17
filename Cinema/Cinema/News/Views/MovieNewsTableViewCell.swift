@@ -43,6 +43,8 @@ class MovieNewsTableViewCell: UITableViewCell {
             make.center.equalToSuperview()
             make.height.width.equalTo(40)
         }
+        starBackView.dropShadow(color: .red, opacity: 1, offSet: CGSize(width: -1, height: 1), radius: 3, scale: true)
+
     }
     
     func setupWords(){
@@ -66,7 +68,8 @@ class MovieNewsTableViewCell: UITableViewCell {
             make.top.equalTo(nameLabel.snp.bottom).offset(8)
             make.centerX.equalTo(nameLabel)
         }
-        
+        raitingView.dropShadow(color: .red, opacity: 0.5, offSet: CGSize(width: -1, height: 1), radius: 6, scale: true)
+
         
     }
     
@@ -117,6 +120,8 @@ class MovieNewsTableViewCell: UITableViewCell {
         view.backgroundColor = .white
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 25
+        
+
         return view
     }()
     
@@ -170,5 +175,35 @@ extension UIImageView
         blurEffectView.frame = self.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(blurEffectView)
+    }
+}
+
+
+extension UIView {
+    
+    // OUTPUT 1
+    func dropShadow(scale: Bool = true) {
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = CGSize(width: -1, height: 1)
+        layer.shadowRadius = 1
+        
+        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+    
+    // OUTPUT 2
+    func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
+        layer.masksToBounds = false
+        layer.shadowColor = color.cgColor
+        layer.shadowOpacity = opacity
+        layer.shadowOffset = offSet
+        layer.shadowRadius = radius
+        
+        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
 }

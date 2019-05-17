@@ -26,7 +26,7 @@ class HistoryTableViewCell: UITableViewCell {
         movieImage.snp.makeConstraints { (make) in
             make.left.top.equalToSuperview().offset(8)
             make.bottom.equalToSuperview().offset(-8)
-            make.width.equalTo(80)
+            make.width.equalTo(100)
         }
         titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(movieImage.snp.right).offset(8)

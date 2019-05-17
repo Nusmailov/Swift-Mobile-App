@@ -38,6 +38,9 @@
 		F57D6A8E2284199600506766 /* UICollectionViewPagingFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57D6A8D2284199600506766 /* UICollectionViewPagingFlowLayout.swift */; };
 		F57D6A902284207C00506766 /* MovieNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57D6A8F2284207C00506766 /* MovieNewsTableViewCell.swift */; };
 		F59D32D3228AC4490020D447 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D32D2228AC4490020D447 /* HistoryTableViewCell.swift */; };
+		F5DF508A228C837B0009BEFD /* UPCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DF5089228C837B0009BEFD /* UPCarouselFlowLayout.swift */; };
+		F5DF508C228C88A90009BEFD /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DF508B228C88A90009BEFD /* MovieCollectionViewCell.swift */; };
+		F5DF508E228D9C080009BEFD /* TopMovieNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DF508D228D9C080009BEFD /* TopMovieNetwork.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +79,9 @@
 		F57D6A8D2284199600506766 /* UICollectionViewPagingFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewPagingFlowLayout.swift; sourceTree = "<group>"; };
 		F57D6A8F2284207C00506766 /* MovieNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNewsTableViewCell.swift; sourceTree = "<group>"; };
 		F59D32D2228AC4490020D447 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		F5DF5089228C837B0009BEFD /* UPCarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPCarouselFlowLayout.swift; sourceTree = "<group>"; };
+		F5DF508B228C88A90009BEFD /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		F5DF508D228D9C080009BEFD /* TopMovieNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMovieNetwork.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +171,7 @@
 			children = (
 				F57D6A892282DA7600506766 /* BaseView.swift */,
 				F57D6A462281A43B00506766 /* ViewController.swift */,
+				F5DF5089228C837B0009BEFD /* UPCarouselFlowLayout.swift */,
 				F57D6A562281A8D200506766 /* Source */,
 				F57D6A6B2282AC9000506766 /* Models */,
 				F57D6A682282A61400506766 /* Random */,
@@ -202,8 +209,7 @@
 		F57D6A622281B12A00506766 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				F57D6A5B2281AC4600506766 /* ProfileViewController.swift */,
-				F57D6A5D2281AD6B00506766 /* AboutAppViewController.swift */,
+				F5DF5088228C832F0009BEFD /* Controllers */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -211,7 +217,9 @@
 		F57D6A632281B13500506766 /* Collections */ = {
 			isa = PBXGroup;
 			children = (
+				F5DF508D228D9C080009BEFD /* TopMovieNetwork.swift */,
 				F57D6A7C2282CD4C00506766 /* FilmListViewController.swift */,
+				F5DF508B228C88A90009BEFD /* MovieCollectionViewCell.swift */,
 			);
 			path = Collections;
 			sourceTree = "<group>";
@@ -289,6 +297,15 @@
 				F57D6A5F2281B11500506766 /* HistoryViewController.swift */,
 			);
 			path = Conrollers;
+			sourceTree = "<group>";
+		};
+		F5DF5088228C832F0009BEFD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F57D6A5B2281AC4600506766 /* ProfileViewController.swift */,
+				F57D6A5D2281AD6B00506766 /* AboutAppViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,6 +444,8 @@
 				F57D6A902284207C00506766 /* MovieNewsTableViewCell.swift in Sources */,
 				F57D6A582281AA4100506766 /* AuthViewController.swift in Sources */,
 				F57D6A5E2281AD6B00506766 /* AboutAppViewController.swift in Sources */,
+				F5DF508A228C837B0009BEFD /* UPCarouselFlowLayout.swift in Sources */,
+				F5DF508E228D9C080009BEFD /* TopMovieNetwork.swift in Sources */,
 				F57D6A6F2282ACC300506766 /* Movie.swift in Sources */,
 				F57D6A5C2281AC4600506766 /* ProfileViewController.swift in Sources */,
 				F57D6A8A2282DA7600506766 /* BaseView.swift in Sources */,
@@ -442,6 +461,7 @@
 				F59D32D3228AC4490020D447 /* HistoryTableViewCell.swift in Sources */,
 				F57D6A842282D90D00506766 /* RandomViewController.swift in Sources */,
 				F502F6492285B4CD001F337B /* MovieNetworkService.swift in Sources */,
+				F5DF508C228C88A90009BEFD /* MovieCollectionViewCell.swift in Sources */,
 				F57D6A452281A43B00506766 /* AppDelegate.swift in Sources */,
 				F57D6A672281B17B00506766 /* NewsViewController.swift in Sources */,
 				F533301A22856D67000515E7 /* MoviePhotoTableViewCell.swift in Sources */,

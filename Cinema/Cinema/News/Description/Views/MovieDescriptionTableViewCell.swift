@@ -23,9 +23,10 @@ class MovieDescriptionTableViewCell: UITableViewCell {
     func setupViews(){
         addSubview(descriptionLabel)
         descriptionLabel.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(10)
-            make.right.equalToSuperview().offset(-10)
-            make.height.greaterThanOrEqualTo(30)
+            make.top.left.equalToSuperview().offset(10)
+            make.bottom.right.equalToSuperview().offset(-10)
+            
+//            make.height.greaterThanOrEqualTo(30)
         }
     }
     

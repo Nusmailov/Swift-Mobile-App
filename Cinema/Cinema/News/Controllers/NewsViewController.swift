@@ -17,19 +17,19 @@ class NewsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         let sc = UISearchController(searchResultsController: nil)
         navigationItem.searchController = sc
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        navigationItem.title = "News"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "News"
         loadInfo()
         setupTableView()
-        tableView.reloadData()
     }
     
     func loadInfo() {
@@ -96,8 +96,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource{
         }else{
             cell.starButton.setImage(UIImage(named: "star"), for: .normal)
         }
-        
-        UIView.animate(withDuration: 1.0, animations: {cell.layer.transform = CATransform3DIdentity; cell.alpha = 1})
+        UIView.animate(withDuration: 0.6, animations: {cell.layer.transform = CATransform3DIdentity; cell.alpha = 1})
         return cell
     }
 }
