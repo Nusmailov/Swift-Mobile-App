@@ -181,7 +181,7 @@ class ProfileViewController: UIViewController {
         }
         
         let nextImage = UIImageView()
-        nextImage.image = UIImage(named: "next")
+        nextImage.image = UIImage(named: "right-arrow")
         button.addSubview(nextImage)
         nextImage.snp.makeConstraints { (make) in
             make.centerY.equalTo(button)

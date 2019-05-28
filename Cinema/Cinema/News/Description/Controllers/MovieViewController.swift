@@ -27,7 +27,6 @@ class MovieViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-//        
     }
     
     func setupTableView(){
@@ -38,7 +37,6 @@ class MovieViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 200
-        
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
             make.right.left.bottom.equalToSuperview()
@@ -71,7 +69,6 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource{
             }else{
                 cell.starButton.setImage(UIImage(named: "star"), for: .normal)
             }
-            
             return cell
         }else if indexPath.item == 1{
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MovieDescriptionTableViewCell
@@ -91,7 +88,6 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource{
         } else if indexPath.row == 1 {
             return UITableView.automaticDimension
         }
-        
         return 0
     }
 }

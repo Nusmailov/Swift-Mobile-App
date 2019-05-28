@@ -28,8 +28,6 @@ class MoviePhotoTableViewCell: UITableViewCell {
         movieImage.addSubview(raitingView)
         movieImage.addSubview(realizeDate)
         movieImage.addSubview(nameLabel)
-        
-        
         raitingView.snp.makeConstraints { (make) in
             make.top.left.equalToSuperview().offset(16)
             make.width.height.equalTo(50)
@@ -57,7 +55,6 @@ class MoviePhotoTableViewCell: UITableViewCell {
             make.center.equalToSuperview()
             make.width.height.equalTo(40)
         }
-        
     }
     
     
@@ -90,7 +87,6 @@ class MoviePhotoTableViewCell: UITableViewCell {
         let image = UIImageView()
         return image
     }()
-    
     lazy var starButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "star"), for: .normal)
@@ -118,11 +114,10 @@ class MoviePhotoTableViewCell: UITableViewCell {
         label.font = UIFont(name: "Helvetica-Bold", size: 18)//UIFont.boldSystemFont(ofSize: 24.0)
         label.numberOfLines = 0
         label.backgroundColor = .white
-        label.layer.cornerRadius = 8
+        label.layer.cornerRadius = 3
         label.layer.masksToBounds = true
         return label
     }()
-    
     let raitingLabel:UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -136,7 +131,7 @@ class MoviePhotoTableViewCell: UITableViewCell {
         label.font = UIFont(name: "Helvetica-Bold", size: 18)//UIFont.boldSystemFont(ofSize: 24.0)
         label.numberOfLines = 0
         label.backgroundColor = .white
-        label.layer.cornerRadius = 8
+        label.layer.cornerRadius = 3
         label.layer.masksToBounds = true
         return label
     }()

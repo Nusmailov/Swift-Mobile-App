@@ -21,17 +21,18 @@ class MovieNewsTableViewCell: UITableViewCell {
     }
     
     func setupViews(){
+        
         contentView.addSubview(movieImageView)
         contentView.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         movieImageView.snp.makeConstraints { (make) in
-            make.top.left.equalToSuperview().offset(16)
-            make.bottom.right.equalToSuperview().offset(-16)
+            make.top.left.equalToSuperview().offset(8)
+            make.bottom.right.equalToSuperview().offset(-8)
         }
         movieImageView.addSubview(shadowView)
+        
         shadowView.snp.makeConstraints { (make) in
             make.right.left.top.bottom.equalToSuperview()
         }
-        
         contentView.addSubview(starBackView)
         starBackView.addSubview(starButton)
         starBackView.snp.makeConstraints { (make) in
@@ -44,9 +45,7 @@ class MovieNewsTableViewCell: UITableViewCell {
             make.height.width.equalTo(40)
         }
         starBackView.dropShadow(color: .red, opacity: 1, offSet: CGSize(width: -1, height: 1), radius: 3, scale: true)
-
     }
-    
     func setupWords(){
         movieImageView.addSubview(raitingView)
         movieImageView.addSubview(nameLabel)
@@ -69,10 +68,7 @@ class MovieNewsTableViewCell: UITableViewCell {
             make.centerX.equalTo(nameLabel)
         }
         raitingView.dropShadow(color: .red, opacity: 0.5, offSet: CGSize(width: -1, height: 1), radius: 6, scale: true)
-
-        
     }
-    
     // MARK: Actions
     @objc func addToHistory(sender :UIButton){
         let defaults = UserDefaults.standard
@@ -114,7 +110,6 @@ class MovieNewsTableViewCell: UITableViewCell {
         button.addTarget(self, action: #selector(addToHistory(sender:)), for: .touchUpInside)
         return button
     }()
-    
     let starBackView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -124,7 +119,6 @@ class MovieNewsTableViewCell: UITableViewCell {
 
         return view
     }()
-    
     let raitingView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -139,7 +133,6 @@ class MovieNewsTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
-    
     let raitingLabel:UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -153,7 +146,6 @@ class MovieNewsTableViewCell: UITableViewCell {
         view.alpha = 0.6
         return view
     }()
-    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -162,12 +154,9 @@ class MovieNewsTableViewCell: UITableViewCell {
         label.textAlignment = .center
         return label
     }()
-    
-    
 }
 
-extension UIImageView
-{
+extension UIImageView{
     func addBlurEffect()
     {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
@@ -177,10 +166,7 @@ extension UIImageView
         self.addSubview(blurEffectView)
     }
 }
-
-
 extension UIView {
-    
     // OUTPUT 1
     func dropShadow(scale: Bool = true) {
         layer.masksToBounds = false
@@ -188,12 +174,10 @@ extension UIView {
         layer.shadowOpacity = 0.5
         layer.shadowOffset = CGSize(width: -1, height: 1)
         layer.shadowRadius = 1
-        
         layer.shadowPath = UIBezierPath(rect: bounds).cgPath
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
-    
     // OUTPUT 2
     func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
         layer.masksToBounds = false
@@ -201,7 +185,6 @@ extension UIView {
         layer.shadowOpacity = opacity
         layer.shadowOffset = offSet
         layer.shadowRadius = radius
-        
         layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1

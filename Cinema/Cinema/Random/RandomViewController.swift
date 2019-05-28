@@ -26,17 +26,15 @@ class RandomViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = "Random Film"
         view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
-        
         view.addSubview(getRandomButton)
-        
         getRandomButton.snp.makeConstraints { (make) in
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
             make.centerX.equalToSuperview()
             make.height.width.equalTo(80)
         }
-        
         setFilmViews()
         filmImage.isHidden = true
+        getRandomFilm()
     }
     func setFilmViews(){
         view.addSubview(filmImage)
@@ -44,7 +42,6 @@ class RandomViewController: UIViewController {
         view.addSubview(realizeDate)
         view.addSubview(voteAvgLabel)
         view.addSubview(overViewLabel)
-        
         filmImage.snp.makeConstraints { (make) in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
             make.left.equalTo(10)
@@ -61,8 +58,6 @@ class RandomViewController: UIViewController {
             make.left.equalToSuperview().offset(8)
             make.right.equalToSuperview().offset(-8)
         }
-        
-        
         filmImage.addSubview(raitingView)
         raitingView.snp.makeConstraints { (make) in
             make.right.bottom.equalToSuperview().offset(-8)
@@ -78,7 +73,6 @@ class RandomViewController: UIViewController {
             make.right.equalToSuperview().offset(-8)
 
         }
-        
     }
     
     //MARK: - Actions
@@ -116,7 +110,6 @@ class RandomViewController: UIViewController {
         label.numberOfLines = 0
         return  label
     }()
-    
     let filmImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleToFill
@@ -126,7 +119,6 @@ class RandomViewController: UIViewController {
 //        image.image = UIImage(named: "movie_logo")
         return image
     }()
-    
     let getRandomButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 40
@@ -135,7 +127,6 @@ class RandomViewController: UIViewController {
         button.imageView?.contentMode = .scaleAspectFill
         return button
     }()
-    
     let realizeDate: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -145,7 +136,6 @@ class RandomViewController: UIViewController {
         label.layer.masksToBounds = true
         return label
     }()
-    
     let raitingView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -153,7 +143,6 @@ class RandomViewController: UIViewController {
         view.layer.cornerRadius = 35
         return view
     }()
-    
     let voteAvgLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -162,7 +151,6 @@ class RandomViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
-    
     let overViewLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white

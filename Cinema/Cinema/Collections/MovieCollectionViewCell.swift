@@ -9,6 +9,7 @@
 import UIKit
 
 class MovieCollectionViewCell: UICollectionViewCell {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -28,24 +29,25 @@ class MovieCollectionViewCell: UICollectionViewCell {
         }
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(movieImage.snp.bottom).offset(-200)
-            make.centerX.equalToSuperview()
+            make.top.equalTo(movieImage.snp.bottom).offset(-150)
+            make.left.equalTo(8)
+            make.right.equalTo(-8)
         }
     }
     
     let movieImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
+        image.layer.cornerRadius = 20
         image.layer.masksToBounds = true
-        image.layer.cornerRadius = 10
         return image
     }()
-    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.font = UIFont(name: "Helvetica-Bold", size: 20)
         label.numberOfLines = 0
+        label.textAlignment = .center
         return  label
     }()
 }
