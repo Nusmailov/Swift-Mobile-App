@@ -19,6 +19,7 @@ class NewsViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        self.navigationController?.navigationBar.barStyle = .blackTranslucent
         let sc = UISearchController(searchResultsController: nil)
         navigationItem.searchController = sc
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]

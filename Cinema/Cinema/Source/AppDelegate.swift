@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         newsNavController.tabBarItem.title = "News"
         newsNavController.tabBarItem.image = UIImage(named: "house")
         
-        let random = RandomViewController()
+        let random = RandomFilmViewController()
         let randomNavController = UINavigationController(rootViewController: random)
         randomNavController.tabBarItem.title = "Random"
         randomNavController.tabBarItem.image = UIImage(named: "shuffle_icon")

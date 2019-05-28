@@ -1,16 +1,15 @@
 //
-//  RandomViewController.swift
+//  RandomFilmViewController.swift
 //  Cinema
 //
-//  Created by Nurzhigit Smailov on 5/8/19.
+//  Created by Nurzhigit Smailov on 5/28/19.
 //  Copyright © 2019 Nurzhigit Smailov. All rights reserved.
 //
 
 import UIKit
-import SDWebImage
 import SVProgressHUD
 
-class RandomViewController: UIViewController {
+class RandomFilmViewController: UIViewController {
     var randomMovie: Movie?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -20,31 +19,50 @@ class RandomViewController: UIViewController {
         self.navigationController?.navigationBar.barStyle = .blackTranslucent
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Random Film"
-        view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
-        view.addSubview(getRandomButton)
-        getRandomButton.snp.makeConstraints { (make) in
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
-            make.centerX.equalToSuperview()
-            make.height.width.equalTo(80)
-        }
-        setFilmViews()
-        filmImage.isHidden = true
+        setupScrollView()
+        setupViews()
         getRandomFilm()
+        let getRandomButton = UIBarButtonItem.init(barButtonSystemItem: .refresh, target: self, action: #selector(getRandomFilm))
+        self.navigationItem.rightBarButtonItem  = getRandomButton
+        setNeedsStatusBarAppearanceUpdate()
+
     }
     
-    func setFilmViews(){
-        view.addSubview(filmImage)
-        view.addSubview(titleLabel)
-        view.addSubview(realizeDate)
-        view.addSubview(voteAvgLabel)
-        view.addSubview(overViewLabel)
+    func setupScrollView(){
+        view.backgroundColor = .white
+        let scrollView = UIScrollView()
+        scrollView.alwaysBounceVertical = true
+        view.addSubview(scrollView)
+        scrollView.snp_makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        scrollView.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        scrollView.addSubview(contentView)
+        contentView.snp_makeConstraints { (make) in
+            make.edges.equalToSuperview()
+            make.width.equalTo(view)
+        }
+    }
+    
+    var darkMode = false
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return darkMode ? .default : .lightContent
+    }
+    
+    func setupViews(){
+        contentView.addSubview(filmImage)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(realizeDate)
+        contentView.addSubview(voteAvgLabel)
+        contentView.addSubview(overViewLabel)
+        
         filmImage.snp.makeConstraints { (make) in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
-            make.left.equalTo(10)
+            make.top.left.equalTo(10)
             make.right.equalTo(-10)
             make.height.equalTo(self.view.frame.height/3)
         }
@@ -68,13 +86,12 @@ class RandomViewController: UIViewController {
             make.center.equalToSuperview()
         }
         overViewLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(realizeDate.snp.bottom).offset(8)
+            make.top.equalTo(realizeDate.snp_bottom).offset(8)
             make.left.equalToSuperview().offset(8)
             make.right.equalToSuperview().offset(-8)
-
+            make.bottom.equalToSuperview()
         }
     }
-    //MARK: - Actions
     @objc func getRandomFilm(){
         SVProgressHUD.show()
         RandomNetworkService.getInfo(success: { (movie) in
@@ -100,7 +117,11 @@ class RandomViewController: UIViewController {
         }
         
     }
-    //MARK: - Views
+    
+    let contentView: UIView = {
+        let view = UIView()
+        return view
+    }()
     let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -114,17 +135,10 @@ class RandomViewController: UIViewController {
         image.layer.cornerRadius = 15
         image.layer.masksToBounds = true
         image.backgroundColor = .black
-//        image.image = UIImage(named: "movie_logo")
+        //        image.image = UIImage(named: "movie_logo")
         return image
     }()
-    let getRandomButton: UIButton = {
-        let button = UIButton()
-        button.layer.cornerRadius = 40
-        button.addTarget(self, action: #selector(getRandomFilm), for: .touchUpInside)
-        button.setImage(UIImage(named: "shuffle"), for: .normal)
-        button.imageView?.contentMode = .scaleAspectFill
-        return button
-    }()
+    
     let realizeDate: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -156,5 +170,4 @@ class RandomViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
-    
 }

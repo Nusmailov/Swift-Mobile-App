@@ -21,6 +21,7 @@ class FilmListViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         self.navigationController!.navigationBar.barTintColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         navigationItem.title = "Top Rated Films"
+        self.navigationController?.navigationBar.barStyle = .blackTranslucent
     }
     
     override func viewDidLoad() {

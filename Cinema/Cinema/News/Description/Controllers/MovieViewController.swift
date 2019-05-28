@@ -22,6 +22,7 @@ class MovieViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         self.navigationController!.navigationBar.barTintColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        self.navigationController?.navigationBar.barStyle = .blackTranslucent
     }
     
     override func viewDidLoad() {

@@ -24,11 +24,11 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         self.navigationController!.navigationBar.barTintColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        self.navigationController?.navigationBar.barStyle = .blackTranslucent
         navigationItem.title = "Profile"
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupProfileViews()
         setupSettingButtons()
     }
@@ -45,8 +45,6 @@ class ProfileViewController: UIViewController {
         profileBackView.addSubview(profileImageView)
         profileBackView.addSubview(phoneLabel)
         profileBackView.addSubview(liner)
-        
-        
         profileImageView.snp.makeConstraints { (make) in
             make.left.equalTo(profileBackView).offset(24)
             make.top.equalTo(profileBackView).offset(24)
@@ -63,7 +61,6 @@ class ProfileViewController: UIViewController {
     fileprivate func setupSettingButtons(){
         let colorGray = UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 0.2)
         let settingsButton = button(text: "Settings", color: colorGray)
-        
         let shareAppButton = button(text: "Share app", color: colorGray)
         //Настройки
         view.addSubview(settingsButton)
@@ -72,9 +69,6 @@ class ProfileViewController: UIViewController {
             make.left.right.equalToSuperview()
             make.height.equalTo(view.frame.width/7)
         }
-        
-        
-        
         //Поделиться приложением
         view.addSubview(shareAppButton)
         shareAppButton.snp.makeConstraints { (make) in
@@ -179,7 +173,6 @@ class ProfileViewController: UIViewController {
             make.right.equalToSuperview()
             make.height.equalTo(2)
         }
-        
         let nextImage = UIImageView()
         nextImage.image = UIImage(named: "right-arrow")
         button.addSubview(nextImage)
@@ -189,7 +182,6 @@ class ProfileViewController: UIViewController {
             make.height.equalTo(16)
             make.width.equalTo(13)
         }
-        
         return button
     }
 }

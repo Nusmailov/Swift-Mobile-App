@@ -14,12 +14,14 @@ class HistoryViewController: UIViewController {
     let cellId = "cellId"
     var movies = [Movie]()
     var refreshControl: UIRefreshControl?
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController!.navigationBar.barTintColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         navigationItem.title = "History"
         self.navigationController?.navigationBar.tintColor = .white
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+        self.navigationController?.navigationBar.barStyle = .blackTranslucent
     }
     
     override func viewDidLoad() {
@@ -27,8 +29,12 @@ class HistoryViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         loadInfo()
         setupTableView()
-        addRefreshControl()
         tableView.reloadData()
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.tintColor = .red
+        refreshControl?.addTarget(self, action: #selector(loadInfo), for: .touchUpInside)
+        tableView.addSubview(refreshControl!)
     }
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
@@ -49,7 +55,7 @@ class HistoryViewController: UIViewController {
         tableView.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
     }
     
-   func loadInfo() {
+    @objc func loadInfo() {
         SVProgressHUD.show()
         let defaults = UserDefaults.standard
         let myarray = defaults.array(forKey: "movieidList")  as? [Int] ?? [Int]()
@@ -57,24 +63,18 @@ class HistoryViewController: UIViewController {
             MovieNetworkService.getInfo(withId: i, success: { (movie) in
                 self.movies.append(movie)
                 self.tableView.reloadData()
-//                self.refreshControl?.endRefreshing()
+//                    self.refreshControl?.endRefreshing()/
             }) { (error) in
                 print(error)
             }
         }
-        self.refreshControl?.endRefreshing()
+        
         SVProgressHUD.dismiss()
     }
      @objc func updateData(){
         loadInfo()
-        self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
-    }
-    func addRefreshControl(){
-        refreshControl = UIRefreshControl()
-        refreshControl?.tintColor = .red
-        refreshControl?.addTarget(self, action: #selector(updateData), for: .touchUpInside)
-        tableView.addSubview(refreshControl!)
+        self.tableView.reloadData()
     }
 }
 
@@ -116,7 +116,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
             }
             defaults.set(myarray, forKey: "movieidList")
             movies.remove(at: indexPath.row)
-            tableView.reloadData()
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
 }

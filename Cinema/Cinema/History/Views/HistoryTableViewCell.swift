@@ -22,7 +22,6 @@ class HistoryTableViewCell: UITableViewCell {
     func setupViews(){
         contentView.addSubview(movieImage)
         contentView.addSubview(titleLabel)
-
         movieImage.snp.makeConstraints { (make) in
             make.left.top.equalToSuperview().offset(8)
             make.bottom.equalToSuperview().offset(-8)

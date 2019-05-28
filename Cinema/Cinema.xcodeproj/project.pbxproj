@@ -12,6 +12,7 @@
 		F5333016228568A4000515E7 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5333015228568A4000515E7 /* MovieViewController.swift */; };
 		F533301822856B3D000515E7 /* MovieDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F533301722856B3D000515E7 /* MovieDescriptionTableViewCell.swift */; };
 		F533301A22856D67000515E7 /* MoviePhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F533301922856D67000515E7 /* MoviePhotoTableViewCell.swift */; };
+		F564CB4D229D29F50099E6EB /* RandomFilmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F564CB4C229D29F50099E6EB /* RandomFilmViewController.swift */; };
 		F57D6A452281A43B00506766 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57D6A442281A43B00506766 /* AppDelegate.swift */; };
 		F57D6A472281A43B00506766 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57D6A462281A43B00506766 /* ViewController.swift */; };
 		F57D6A4A2281A43B00506766 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F57D6A482281A43B00506766 /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		F5333015228568A4000515E7 /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		F533301722856B3D000515E7 /* MovieDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		F533301922856D67000515E7 /* MoviePhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePhotoTableViewCell.swift; sourceTree = "<group>"; };
+		F564CB4C229D29F50099E6EB /* RandomFilmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomFilmViewController.swift; sourceTree = "<group>"; };
 		F57D6A412281A43B00506766 /* Cinema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cinema.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F57D6A442281A43B00506766 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F57D6A462281A43B00506766 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			children = (
 				F57D6A832282D90D00506766 /* RandomViewController.swift */,
 				F57D6A852282D93300506766 /* RandomNetworkService.swift */,
+				F564CB4C229D29F50099E6EB /* RandomFilmViewController.swift */,
 			);
 			path = Random;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				F5DF508C228C88A90009BEFD /* MovieCollectionViewCell.swift in Sources */,
 				F57D6A452281A43B00506766 /* AppDelegate.swift in Sources */,
 				F57D6A672281B17B00506766 /* NewsViewController.swift in Sources */,
+				F564CB4D229D29F50099E6EB /* RandomFilmViewController.swift in Sources */,
 				F533301A22856D67000515E7 /* MoviePhotoTableViewCell.swift in Sources */,
 				F533301822856B3D000515E7 /* MovieDescriptionTableViewCell.swift in Sources */,
 				F57D6A862282D93300506766 /* RandomNetworkService.swift in Sources */,
