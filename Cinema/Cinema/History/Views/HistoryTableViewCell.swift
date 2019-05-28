@@ -36,7 +36,7 @@ class HistoryTableViewCell: UITableViewCell {
     let movieImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleToFill
-        image.layer.cornerRadius = 30
+        image.layer.cornerRadius = 10
         image.layer.masksToBounds = true
         return image
     }()

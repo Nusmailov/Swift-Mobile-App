@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController.tabBar.tintColor = .white
         tabBarController.tabBarItem.badgeColor = UIColor(hue: 0, saturation: 0, brightness: 0.62, alpha: 1.0)
         
-        
         let profile = ProfileViewController()
         let profileNavController = UINavigationController(rootViewController: profile)
         profileNavController.tabBarItem.title = "Profile"

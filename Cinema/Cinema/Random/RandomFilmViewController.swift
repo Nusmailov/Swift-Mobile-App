@@ -79,7 +79,7 @@ class RandomFilmViewController: UIViewController {
         filmImage.addSubview(raitingView)
         raitingView.snp.makeConstraints { (make) in
             make.right.bottom.equalToSuperview().offset(-8)
-            make.width.height.equalTo(70)
+            make.width.height.equalTo(50)
         }
         raitingView.addSubview(voteAvgLabel)
         voteAvgLabel.snp.makeConstraints { (make) in
@@ -152,7 +152,7 @@ class RandomFilmViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.masksToBounds = true
-        view.layer.cornerRadius = 35
+        view.layer.cornerRadius = 25
         return view
     }()
     let voteAvgLabel: UILabel = {

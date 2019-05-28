@@ -38,7 +38,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     let movieImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
-        image.layer.cornerRadius = 20
+        image.layer.cornerRadius = 30
         image.layer.masksToBounds = true
         return image
     }()

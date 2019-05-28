@@ -34,7 +34,7 @@ class HistoryViewController: UIViewController {
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = .red
         refreshControl?.addTarget(self, action: #selector(loadInfo), for: .touchUpInside)
-        tableView.addSubview(refreshControl!)
+//        tableView.addSubview(refreshControl!)
     }
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)

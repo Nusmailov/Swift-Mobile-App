@@ -14,7 +14,7 @@ class NewsViewController: UIViewController {
     var movies = [Movie]()
     let tableView = UITableView(frame: .zero)
     let cellID = "MovieNewsID"
-    
+    var refreshControl: UIRefreshControl?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.tintColor = .white
@@ -31,17 +31,23 @@ class NewsViewController: UIViewController {
         super.viewDidLoad()
         loadInfo()
         setupTableView()
+        refreshControl = UIRefreshControl()
+        refreshControl?.tintColor = .red
+        refreshControl?.addTarget(self, action: #selector(loadInfo), for: .touchUpInside)
+        tableView.addSubview(refreshControl!)
     }
     
-    func loadInfo() {
+    @objc func loadInfo() {
         SVProgressHUD.show()
         NewsNetwork.getInfo(success: { (info) in
             SVProgressHUD.dismiss()
             self.movies = info
             self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
         }) { (error) in
             SVProgressHUD.dismiss()
             print("error")
+            self.refreshControl?.endRefreshing()
         }
     }
     
