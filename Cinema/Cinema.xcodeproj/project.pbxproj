@@ -42,6 +42,7 @@
 		F5DF508C228C88A90009BEFD /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DF508B228C88A90009BEFD /* MovieCollectionViewCell.swift */; };
 		F5DF508E228D9C080009BEFD /* TopMovieNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DF508D228D9C080009BEFD /* TopMovieNetwork.swift */; };
 		F5F5E45A22B75D350012882A /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F5E45922B75D350012882A /* MovieViewModel.swift */; };
+		F5F5E45F22B79F650012882A /* SearchMovieNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F5E45E22B79F650012882A /* SearchMovieNetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		F5DF508B228C88A90009BEFD /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		F5DF508D228D9C080009BEFD /* TopMovieNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMovieNetwork.swift; sourceTree = "<group>"; };
 		F5F5E45922B75D350012882A /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
+		F5F5E45E22B79F650012882A /* SearchMovieNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieNetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			children = (
 				F57D6A7E2282D37A00506766 /* NewsNetwork.swift */,
 				F502F6482285B4CD001F337B /* MovieNetworkService.swift */,
+				F5F5E45E22B79F650012882A /* SearchMovieNetworkService.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				F57D6A6F2282ACC300506766 /* Movie.swift in Sources */,
 				F57D6A5C2281AC4600506766 /* ProfileViewController.swift in Sources */,
 				F57D6A8A2282DA7600506766 /* BaseView.swift in Sources */,
+				F5F5E45F22B79F650012882A /* SearchMovieNetworkService.swift in Sources */,
 				F57D6A7D2282CD4C00506766 /* FilmListViewController.swift in Sources */,
 				F57D6A7F2282D37A00506766 /* NewsNetwork.swift in Sources */,
 				F57D6A792282AD7100506766 /* ProductionCompany.swift in Sources */,

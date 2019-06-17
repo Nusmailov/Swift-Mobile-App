@@ -13,7 +13,7 @@ import SVProgressHUD
 class NewsViewController: UIViewController {
     // MARK: - Properties
     var movieViewModels = [MovieViewModel]()
-    private var filteredMoviesViewModels = [MovieViewModel]()
+    var filteredMovieViewModels = [MovieViewModel]()
     let tableView = UITableView(frame: .zero)
     let cellID = "MovieNewsID"
     var refreshControl: UIRefreshControl?
@@ -21,6 +21,9 @@ class NewsViewController: UIViewController {
     private var searchBarIsEmpty:Bool {
         guard let text = searchController.searchBar.text else{ return false }
         return text.isEmpty
+    }
+    private var isFiltering:Bool {
+        return searchController.isActive && !searchBarIsEmpty
     }
     
     // MARK: - Life cycle
@@ -42,7 +45,7 @@ class NewsViewController: UIViewController {
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = .red
         refreshControl?.addTarget(self, action: #selector(loadInfo), for: .touchUpInside)
-        tableView.addSubview(refreshControl!)
+//        tableView.addSubview(refreshControl!)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Avengers"
@@ -84,15 +87,24 @@ class NewsViewController: UIViewController {
 // MARK: - TableView Delegate Methods
 extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering {
+            return filteredMovieViewModels.count
+        }
         return movieViewModels.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = MovieViewController()
-        if let title = movieViewModels[indexPath.item].title {
+        var movie: MovieViewModel
+        if isFiltering {
+            movie = filteredMovieViewModels[indexPath.row]
+        } else {
+            movie = movieViewModels[indexPath.row]
+        }
+        if let title = movie.title {
             vc.navigationItem.title = "\(String(describing: title))"
         }
-        vc.movieViewModel = movieViewModels[indexPath.item]
+        vc.movieViewModel = movie
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -100,8 +112,12 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! MovieNewsTableViewCell
         tableView.rowHeight = view.frame.width
         cell.selectionStyle = .none
-        
-        let movie = movieViewModels[indexPath.row]
+        var movie: MovieViewModel
+        if isFiltering {
+            movie = filteredMovieViewModels[indexPath.row]
+        } else {
+            movie = movieViewModels[indexPath.row]
+        }
         cell.movieImageView.sd_setImage(with: movie.getImageUrl())
         cell.nameLabel.text =  movie.title
         if let raiting = movie.voteAverage {
@@ -130,11 +146,18 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension NewsViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        
+        searchByText(text: searchController.searchBar.text!)
     }
     
     private func searchByText(text: String) {
-        
+        SearchMovieNetworkService.getInfo(withText: text, success: { [weak self] (filteredMovies) in
+            self?.filteredMovieViewModels = filteredMovies.map({ return
+                MovieViewModel(movie: $0)
+            })
+            self?.tableView.reloadData()
+        }) { (Error) in
+            print(Error)
+        }
     }
     
 }

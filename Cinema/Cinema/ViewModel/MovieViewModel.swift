@@ -8,8 +8,8 @@
 
 import Foundation
 
-
 struct MovieViewModel {
+    
     // MARK: - Properties
     let adult : Bool
     var backdropPath : String

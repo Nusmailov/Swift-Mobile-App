@@ -176,7 +176,7 @@ class RandomFilmViewController: UIViewController {
             self.filmImage.sd_removeActivityIndicator()
             self.realizeDate.text = self.randomMovieViewModel?.releaseDate
             self.titleLabel.text = self.randomMovieViewModel?.title
-            if let voteAvg =  self.randomMovieViewModel?.voteAverage{
+            if let voteAvg =  self.randomMovieViewModel?.voteAverage {
                 self.voteAvgLabel.text = "\(String(describing: voteAvg))"
             }
             self.overViewLabel.text = self.randomMovieViewModel?.overview

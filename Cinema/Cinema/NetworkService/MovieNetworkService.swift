@@ -20,12 +20,12 @@ class MovieNetworkService {
                           headers: nil)
             .responseJSON { response in
                 switch response.result {
-                case .success(let val):
-                    let info = JSON(val)
-                    let res = Movie.init(json: info)
-                    success(res)
-                case .failure(let error):
-                    failure(error)
+                    case .success(let val):
+                        let info = JSON(val)
+                        let res = Movie.init(json: info)
+                        success(res)
+                    case .failure(let error):
+                        failure(error)
                 }
         }
     }
