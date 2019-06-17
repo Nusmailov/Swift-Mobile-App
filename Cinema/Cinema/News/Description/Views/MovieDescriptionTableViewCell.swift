@@ -9,7 +9,16 @@
 import UIKit
 
 class MovieDescriptionTableViewCell: UITableViewCell {
-
+    
+    // MARK: - Properties
+    let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .white
+        return label
+    }()
+    
+    // MARK: - Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
@@ -20,20 +29,12 @@ class MovieDescriptionTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews(){
+    // MARK: - Setup Views
+    func setupViews() {
         addSubview(descriptionLabel)
         descriptionLabel.snp.makeConstraints { (make) in
             make.top.left.equalToSuperview().offset(10)
             make.bottom.right.equalToSuperview().offset(-10)
-            
-//            make.height.greaterThanOrEqualTo(30)
         }
     }
-    
-    let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textColor = .white
-        return label
-    }()
 }

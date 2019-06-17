@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let historyNavController = UINavigationController(rootViewController: history)
         historyNavController.tabBarItem.title = "History"
         historyNavController.tabBarItem.image = UIImage(named: "history")
+        
         
         let news = NewsViewController()
         let newsNavController = UINavigationController(rootViewController: news)

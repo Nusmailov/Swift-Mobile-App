@@ -10,21 +10,22 @@ import UIKit
 
 class AuthViewController: UIViewController {
     
+    // MARK: - Properties
     var numberField:UITextField!
     var descLbl:UILabel!
     var centerView:UIView!
     var iconImage:UIImageView!
     var continueBtn:UIButton!
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
         configureCenterView()
-        // Do any additional setup after loading the view.
         configureIcon()
     }
     
+    // MARK: - Setupviews
     func configureCenterView() {
         centerView = UIView(frame: CGRect(x: 0, y: view.frame.midY - 100, width: view.frame.width, height: 200))
         centerView.backgroundColor = .white
@@ -58,6 +59,7 @@ class AuthViewController: UIViewController {
         view.addSubview(centerView)
     }
     
+    // MARK: - Methods
     func configureIcon() {
         iconImage = UIImageView(frame: CGRect(x: view.frame.width / 2 - 40, y: centerView.frame.minY / 2 - 40, width: 80, height: 80))
         iconImage.contentMode = .scaleAspectFill
@@ -90,13 +92,10 @@ class AuthViewController: UIViewController {
 extension UITextField {
     
     func setBottomLine(borderColor: UIColor, height: Double) {
-        
         self.borderStyle = UITextField.BorderStyle.none
         self.backgroundColor = UIColor.clear
-        
         let borderLine = UIView()
         borderLine.frame = CGRect(x: 0, y: Double(self.frame.height) - height, width: Double(self.frame.width), height: height)
-        
         borderLine.backgroundColor = borderColor
         self.addSubview(borderLine)
     }

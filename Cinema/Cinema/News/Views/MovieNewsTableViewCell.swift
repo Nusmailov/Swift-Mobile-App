@@ -9,7 +9,75 @@
 import UIKit
 
 class MovieNewsTableViewCell: UITableViewCell {
+    // MARK: - Properties
     var movie_id = Int()
+    
+    let movieImageView: UIImageView = {
+        let image = UIImageView()
+        image.layer.masksToBounds = true
+        image.layer.cornerRadius = 20
+        image.contentMode = .scaleAspectFill
+        image.backgroundColor = .white
+        return image
+    }()
+    
+    lazy var starButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "star"), for: .normal)
+        button.isEnabled = true
+        button.addTarget(self, action: #selector(addToHistory(sender:)), for: .touchUpInside)
+        return button
+    }()
+    
+    let starBackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 25
+        return view
+    }()
+    
+    let raitingView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 25
+        return view
+    }()
+    
+    let realizeDate: UILabel = {
+        let label = UILabel()
+        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.font = UIFont(name: "Helvetica-Bold", size: 18)//UIFont.boldSystemFont(ofSize: 24.0)
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    let raitingLabel:UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont(name: "Helvetica-Bold", size: 18)//UIFont.boldSystemFont(ofSize: 24.0)
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    let shadowView: UIView = {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        view.alpha = 0.6
+        return view
+    }()
+    
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.font = UIFont(name: "Helvetica-Bold", size: 18)//UIFont.boldSystemFont(ofSize: 24.0)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
+    }()
+    
+    // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
@@ -20,8 +88,8 @@ class MovieNewsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews(){
-        
+    // MARK: - Methods
+    func setupViews() {
         contentView.addSubview(movieImageView)
         contentView.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         movieImageView.snp.makeConstraints { (make) in
@@ -46,7 +114,8 @@ class MovieNewsTableViewCell: UITableViewCell {
         }
         starBackView.dropShadow(color: .red, opacity: 1, offSet: CGSize(width: -1, height: 1), radius: 3, scale: true)
     }
-    func setupWords(){
+    
+    func setupWords() {
         movieImageView.addSubview(raitingView)
         movieImageView.addSubview(nameLabel)
         movieImageView.addSubview(realizeDate)
@@ -69,23 +138,24 @@ class MovieNewsTableViewCell: UITableViewCell {
         }
         raitingView.dropShadow(color: .red, opacity: 0.5, offSet: CGSize(width: -1, height: 1), radius: 6, scale: true)
     }
+    
     // MARK: Actions
-    @objc func addToHistory(sender :UIButton){
+    @objc func addToHistory(sender :UIButton) {
         let defaults = UserDefaults.standard
         var myarray = defaults.array(forKey: "movieidList")  as? [Int] ?? [Int]()
-        if starButton.imageView?.image == UIImage(named: "star"){
+        if starButton.imageView?.image == UIImage(named: "star") {
             starButton.setImage(UIImage(named: "starGold"), for: .normal)
-            if !myarray.contains(movie_id){
+            if !myarray.contains(movie_id) {
                 //add element
                 myarray.append(movie_id)
                 print(myarray)
             }
             defaults.set(myarray, forKey: "movieidList")
-        }else{
+        } else {
             starButton.setImage(UIImage(named: "star"), for: .normal)
             let defaults = UserDefaults.standard
             var myarray = defaults.array(forKey: "movieidList")  as? [Int] ?? [Int]()
-            if myarray.contains(movie_id){
+            if myarray.contains(movie_id) {
                 //remove
                 myarray.remove(at: myarray.firstIndex(of: movie_id)!)
                 print(myarray)
@@ -93,72 +163,10 @@ class MovieNewsTableViewCell: UITableViewCell {
             defaults.set(myarray, forKey: "movieidList")
         }
     }
-    
-    // MARK: Views
-    let movieImageView: UIImageView = {
-        let image = UIImageView()
-        image.layer.masksToBounds = true
-        image.layer.cornerRadius = 20
-        image.contentMode = .scaleAspectFill
-        image.backgroundColor = .white
-        return image
-    }()
-    lazy var starButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "star"), for: .normal)
-        button.isEnabled = true
-        button.addTarget(self, action: #selector(addToHistory(sender:)), for: .touchUpInside)
-        return button
-    }()
-    let starBackView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.masksToBounds = true
-        view.layer.cornerRadius = 25
-        
-
-        return view
-    }()
-    let raitingView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.masksToBounds = true
-        view.layer.cornerRadius = 25
-        return view
-    }()
-    let realizeDate: UILabel = {
-        let label = UILabel()
-        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont(name: "Helvetica-Bold", size: 18)//UIFont.boldSystemFont(ofSize: 24.0)
-        label.numberOfLines = 0
-        return label
-    }()
-    let raitingLabel:UILabel = {
-        let label = UILabel()
-        label.textColor = .black
-        label.font = UIFont(name: "Helvetica-Bold", size: 18)//UIFont.boldSystemFont(ofSize: 24.0)
-        label.numberOfLines = 0
-        return label
-    }()
-    let shadowView: UIView = {
-        let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        view.alpha = 0.6
-        return view
-    }()
-    let nameLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        label.font = UIFont(name: "Helvetica-Bold", size: 18)//UIFont.boldSystemFont(ofSize: 24.0)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        return label
-    }()
 }
 
-extension UIImageView{
-    func addBlurEffect()
-    {
+extension UIImageView {
+    func addBlurEffect() {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.bounds

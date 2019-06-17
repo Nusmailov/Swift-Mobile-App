@@ -15,29 +15,21 @@ class ProductionCompany : NSObject, NSCoding{
     var name : String!
     var originCountry : String!
     
-    
-    /**
-     * Instantiate the instance using the passed dictionary values to set the properties values
-     */
-    init(fromDictionary dictionary: [String:Any]){
+    init(fromDictionary dictionary: [String:Any]) {
         id = dictionary["id"] as? Int
         logoPath = dictionary["logo_path"] as? String
         name = dictionary["name"] as? String
         originCountry = dictionary["origin_country"] as? String
     }
     
-    
-    init(json: JSON){
+    init(json: JSON) {
         id = json["id"].int
         logoPath = json["logo_path"].string
         name = json["name"].string
         originCountry = json["origin_country"].string
     }
-    /**
-     * Returns all the available property values in the form of [String:Any] object where the key is the approperiate json key and the value is the value of the corresponding property
-     */
-    func toDictionary() -> [String:Any]
-    {
+    
+    func toDictionary() -> [String:Any] {
         var dictionary = [String:Any]()
         if id != nil{
             dictionary["id"] = id
@@ -54,35 +46,26 @@ class ProductionCompany : NSObject, NSCoding{
         return dictionary
     }
     
-    /**
-     * NSCoding required initializer.
-     * Fills the data from the passed decoder
-     */
-    @objc required init(coder aDecoder: NSCoder)
-    {
+    @objc required init(coder aDecoder: NSCoder) {
         id = aDecoder.decodeObject(forKey: "id") as? Int
         logoPath = aDecoder.decodeObject(forKey: "logo_path") as? String
         name = aDecoder.decodeObject(forKey: "name") as? String
         originCountry = aDecoder.decodeObject(forKey: "origin_country") as? String
     }
     
-    /**
-     * NSCoding required method.
-     * Encodes mode properties into the decoder
-     */
-    @objc func encode(with aCoder: NSCoder)
-    {
-        if id != nil{
+    @objc func encode(with aCoder: NSCoder) {
+        if id != nil {
             aCoder.encode(id, forKey: "id")
         }
-        if logoPath != nil{
+        if logoPath != nil {
             aCoder.encode(logoPath, forKey: "logo_path")
         }
-        if name != nil{
+        if name != nil {
             aCoder.encode(name, forKey: "name")
         }
-        if originCountry != nil{
+        if originCountry != nil {
             aCoder.encode(originCountry, forKey: "origin_country")
         }
     }
+    
 }

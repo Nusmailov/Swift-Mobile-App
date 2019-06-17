@@ -14,11 +14,9 @@ class MovieCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupViews()
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     func setupViews(){
         backgroundColor = .red
         contentView.addSubview(movieImage)
@@ -42,6 +40,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         image.layer.masksToBounds = true
         return image
     }()
+    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -50,4 +49,5 @@ class MovieCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .center
         return  label
     }()
+    
 }

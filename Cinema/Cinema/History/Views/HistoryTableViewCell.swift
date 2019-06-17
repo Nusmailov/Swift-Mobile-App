@@ -9,7 +9,24 @@
 import UIKit
 
 class HistoryTableViewCell: UITableViewCell {
-
+    //MARK: - Properties
+    let movieImage: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleToFill
+        image.layer.cornerRadius = 10
+        image.layer.masksToBounds = true
+        return image
+    }()
+    
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont(name: "Helvetica-Bold", size: 20)//UIFont.boldSystemFont(ofSize: 24.0)
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    //MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
@@ -19,6 +36,7 @@ class HistoryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Setupviews
     func setupViews(){
         contentView.addSubview(movieImage)
         contentView.addSubview(titleLabel)
@@ -33,18 +51,5 @@ class HistoryTableViewCell: UITableViewCell {
             make.centerY.equalToSuperview()
         }
     }
-    let movieImage: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleToFill
-        image.layer.cornerRadius = 10
-        image.layer.masksToBounds = true
-        return image
-    }()
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont(name: "Helvetica-Bold", size: 20)//UIFont.boldSystemFont(ofSize: 24.0)
-        label.numberOfLines = 0
-        return label
-    }()
+
 }

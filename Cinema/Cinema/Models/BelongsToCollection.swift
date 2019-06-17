@@ -16,44 +16,31 @@ class BelongsToCollection : NSObject, NSCoding{
     var name : String!
     var posterPath : String!
     
-    init(json: JSON){
+    init(json: JSON) {
         backdropPath = json["backdrop_path"].stringValue
         id = json["id"].intValue
         name = json["name"].stringValue
         posterPath = json["poster_path"].stringValue
     }
     
-    
-    
-    
-    /**
-     * NSCoding required initializer.
-     * Fills the data from the passed decoder
-     */
-    @objc required init(coder aDecoder: NSCoder)
-    {
+    @objc required init(coder aDecoder: NSCoder) {
         backdropPath = aDecoder.decodeObject(forKey: "backdrop_path") as? String
         id = aDecoder.decodeObject(forKey: "id") as? Int
         name = aDecoder.decodeObject(forKey: "name") as? String
         posterPath = aDecoder.decodeObject(forKey: "poster_path") as? String
     }
     
-    /**
-     * NSCoding required method.
-     * Encodes mode properties into the decoder
-     */
-    @objc func encode(with aCoder: NSCoder)
-    {
-        if backdropPath != nil{
+    @objc func encode(with aCoder: NSCoder) {
+        if backdropPath != nil {
             aCoder.encode(backdropPath, forKey: "backdrop_path")
         }
-        if id != nil{
+        if id != nil {
             aCoder.encode(id, forKey: "id")
         }
-        if name != nil{
+        if name != nil {
             aCoder.encode(name, forKey: "name")
         }
-        if posterPath != nil{
+        if posterPath != nil {
             aCoder.encode(posterPath, forKey: "poster_path")
         }
     }

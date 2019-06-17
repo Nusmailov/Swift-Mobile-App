@@ -10,6 +10,7 @@ import UIKit
 
 class ConfirmationCodeViewController: UIViewController {
     
+    // MARK: - Properties
     var titleLlb:UILabel!
     var closeBtn:UIButton!
     var infoLbl:UILabel!
@@ -22,6 +23,7 @@ class ConfirmationCodeViewController: UIViewController {
     var continueBtn:UIButton!
     var whatToCheck:String!
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -34,7 +36,8 @@ class ConfirmationCodeViewController: UIViewController {
         codeInput1.becomeFirstResponder()
     }
     
-    func configureTitle(){
+    // MARK: - Setupviews
+    func configureTitle() {
         titleLlb = UILabel(frame: CGRect(x: 20, y: 40, width: 200, height: 40))
         titleLlb.text = "Введите код из СМС"
         titleLlb.textColor = .black
@@ -113,18 +116,18 @@ class ConfirmationCodeViewController: UIViewController {
         
     }
     
+    // MARK: - Methods
     @objc func closeView() {
         self.dismiss(animated: true, completion: nil)
     }
-    
     
     @objc func registerAction() {
         let app = UIApplication.shared.delegate as! AppDelegate
         view.endEditing(true)
         app.setRootViewTabBar()
     }
+    
     @objc func textFieldDidChange(textField: UITextField) {
-        
         let text = textField.text
         if text?.count == 1 {
             switch textField {

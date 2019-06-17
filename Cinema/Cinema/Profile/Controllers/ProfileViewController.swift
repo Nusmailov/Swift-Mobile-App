@@ -11,13 +11,43 @@ import SnapKit
 
 
 class ProfileViewController: UIViewController {
+    //MARK: - Properties
     var profileView:UIView!
     var editButton: UIButton!
     var isOkTransaction = false
     var fromTransaction = false
     var successView:UIView!
     
+    let profileImageView: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "profile")
+        image.layer.masksToBounds = true
+        image.layer.cornerRadius = 25
+        image.contentMode = .scaleAspectFit
+        image.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
+        return image
+    }()
+    let profileBackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+        return view
+    }()
+    let phoneLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Smailov Nurzhigit"
+        label.font = UIFont(name: "RobotoMono-Medium", size: 20)
+        label.textColor = .white
+        label.font = label.font.withSize(20)
+        return label
+    }()
     
+    func line() -> UIView {
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 0.2)
+        return view
+    }
+    
+    //MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
@@ -33,7 +63,7 @@ class ProfileViewController: UIViewController {
         setupSettingButtons()
     }
     
-    
+    //MARK: - SetupViews
     fileprivate func setupProfileViews(){
         view.addSubview(profileBackView)
         profileBackView.snp.makeConstraints { (make) in
@@ -56,7 +86,6 @@ class ProfileViewController: UIViewController {
             make.right.equalToSuperview()
         }
     }
-    
     
     fileprivate func setupSettingButtons(){
         let colorGray = UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 0.2)
@@ -110,7 +139,7 @@ class ProfileViewController: UIViewController {
         exitButton.addTarget(self, action: #selector(quitAction), for: .touchUpInside)
     }
     
-    
+    //MARK: - Methods
     @objc func quitAction() {
         let app = UIApplication.shared.delegate as! AppDelegate
         app.setRootViewAuth()
@@ -119,34 +148,7 @@ class ProfileViewController: UIViewController {
         let vc = AboutAppViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    let profileImageView: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "profile")
-        image.layer.masksToBounds = true
-        image.layer.cornerRadius = 25
-        image.contentMode = .scaleAspectFit
-        image.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1)
-        return image
-    }()
-    let profileBackView: UIView = {
-        let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
-        return view
-    }()
-    let phoneLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Smailov Nurzhigit"
-        label.font = UIFont(name: "RobotoMono-Medium", size: 20)
-        label.textColor = .white
-        label.font = label.font.withSize(20)
-        return label
-    }()
-    
-    func line() -> UIView {
-        let view = UIView()
-        view.backgroundColor = UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 0.2)
-        return view
-    }
+   
     
     func button(text: String, color: UIColor) -> UIButton {
         let button = UIButton()
