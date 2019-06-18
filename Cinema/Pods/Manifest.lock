@@ -1,5 +1,10 @@
 PODS:
   - Alamofire (4.8.1)
+  - RxAtomic (4.4.0)
+  - RxCocoa (4.4.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
   - SDWebImage (4.4.5):
     - SDWebImage/Core (= 4.4.5)
   - SDWebImage/Core (4.4.5)
@@ -9,6 +14,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - RxCocoa
+  - RxSwift
   - SDWebImage
   - SnapKit
   - SVProgressHUD
@@ -17,6 +24,9 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - RxAtomic
+    - RxCocoa
+    - RxSwift
     - SDWebImage
     - SnapKit
     - SVProgressHUD
@@ -24,11 +34,14 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 8227ff7d3626088dd18ab05b445123439517f55a
+PODFILE CHECKSUM: 49be13ad5227f4282a64056507f5f110ca294306
 
 COCOAPODS: 1.5.3

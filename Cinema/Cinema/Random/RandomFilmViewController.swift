@@ -10,6 +10,7 @@ import UIKit
 import SVProgressHUD
 
 class RandomFilmViewController: UIViewController {
+    
     // MARK: - Properties
     var randomMovieViewModel: MovieViewModel?
     
@@ -85,12 +86,12 @@ class RandomFilmViewController: UIViewController {
         self.navigationController?.navigationBar.barStyle = .blackTranslucent
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Random Film"
+        randomMovieViewModel = MovieViewModel()
         setupScrollView()
         setupViews()
         getRandomFilm()
@@ -164,26 +165,20 @@ class RandomFilmViewController: UIViewController {
     // MARK: - Methods
     @objc func getRandomFilm() {
         SVProgressHUD.show()
-        RandomNetworkService.getInfo(success: { (movie) in
-            self.randomMovieViewModel = MovieViewModel(movie: movie)
-            if self.randomMovieViewModel?.backdropPath == "" || self.randomMovieViewModel?.overview == "" {
-                self.getRandomFilm()
+        randomMovieViewModel!.getRandomMovie(success: { [weak self] (movie) in
+            if movie.backdropPath == "" || movie.overview == "" {
+                self?.getRandomFilm()
                 return
             }
-            self.filmImage.sd_addActivityIndicator()
-            self.filmImage.sd_showActivityIndicatorView()
-            self.filmImage.sd_setImage(with: self.randomMovieViewModel?.getImageUrl())
-            self.filmImage.sd_removeActivityIndicator()
-            self.realizeDate.text = self.randomMovieViewModel?.releaseDate
-            self.titleLabel.text = self.randomMovieViewModel?.title
-            if let voteAvg =  self.randomMovieViewModel?.voteAverage {
-                self.voteAvgLabel.text = "\(String(describing: voteAvg))"
+            self?.filmImage.sd_setImage(with: self?.randomMovieViewModel!.getImageUrl(backdropPath: movie.backdropPath))
+            self?.realizeDate.text = movie.releaseDate
+            self?.titleLabel.text = movie.title
+            if let voteAvg = movie.voteAverage {
+                self?.voteAvgLabel.text = "\(String(describing: voteAvg))"
             }
-            self.overViewLabel.text = self.randomMovieViewModel?.overview
-            self.filmImage.isHidden = false
+            self?.overViewLabel.text = movie.overview
+            self?.filmImage.isHidden = false
             SVProgressHUD.dismiss()
-        }) { (error) in
-            print(error)
-        }
+        })
     }
 }

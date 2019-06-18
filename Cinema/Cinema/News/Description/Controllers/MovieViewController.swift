@@ -15,7 +15,7 @@ class MovieViewController: UIViewController {
     let cellPhoto = "cellPhoto"
     let cellId = "cellId"
     let cell = "cell"
-    var movieViewModel: MovieViewModel?
+    var movie: Movie?
     
     // MARK: - Life cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -61,13 +61,13 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource{
         if indexPath.item  == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: cellPhoto, for: indexPath) as! MoviePhotoTableViewCell
             cell.selectionStyle = .none
-            cell.movieImage.sd_setImage(with: movieViewModel?.getImageUrl())
-            if let raiting = movieViewModel?.voteAverage{
+            cell.movieImage.sd_setImage(with: movie?.getImageUrl())
+            if let raiting = movie?.voteAverage{
                 cell.raitingLabel.text = "\(String(describing: raiting))"
             }
-            cell.nameLabel.text = movieViewModel?.title
-            cell.realizeDate.text = movieViewModel?.releaseDate
-            cell.movie_id = movieViewModel?.id ?? -1
+            cell.nameLabel.text = movie?.title
+            cell.realizeDate.text = movie?.releaseDate
+            cell.movie_id = movie?.id ?? -1
             let defaults = UserDefaults.standard
             let myarray = defaults.array(forKey: "movieidList")  as? [Int] ?? [Int]()
             if myarray.contains(cell.movie_id){
@@ -78,7 +78,7 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource{
             return cell
         } else if indexPath.item == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MovieDescriptionTableViewCell
-            cell.descriptionLabel.text = movieViewModel?.overview
+            cell.descriptionLabel.text = movie?.overview
             cell.selectionStyle = .none
             return cell
         }

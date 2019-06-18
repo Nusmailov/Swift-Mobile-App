@@ -12,7 +12,8 @@ import SVProgressHUD
 class FilmListViewController: UIViewController {
     var collectionView:  UICollectionView!
     var cellId = "cellID"
-    var movieViewModels = [MovieViewModel]()
+    var movieList = [Movie]()
+    var movieViewModel: MovieViewModel?
     
     //MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
@@ -28,6 +29,7 @@ class FilmListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+        movieViewModel = MovieViewModel()
         loadInfo()
     }
     
@@ -50,31 +52,24 @@ class FilmListViewController: UIViewController {
     //MARK: - Methods
     func loadInfo() {
         SVProgressHUD.show()
-        TopMovieNetwork.getInfo(success: { (info) in
-            SVProgressHUD.dismiss()
-            self.movieViewModels = info.map({ return
-                MovieViewModel(movie: $0)
-                }
-            )
+        movieViewModel?.getTopMovies(success: { (movies) in
+            self.movieList = movies
             self.collectionView.reloadData()
-        }) { (error) in
             SVProgressHUD.dismiss()
-            print("error")
-        }
+        })
     }
-    
 }
 
 //MARK: - Collection View Delegate
 extension  FilmListViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movieViewModels.count
+        return movieList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MovieCollectionViewCell
-        cell.movieImage.sd_setImage(with: movieViewModels[indexPath.row].getImageUrl())
-        cell.titleLabel.text = movieViewModels[indexPath.row].title
+        cell.movieImage.sd_setImage(with: movieList[indexPath.row].getImageUrl())
+        cell.titleLabel.text = movieList[indexPath.row].title
         return cell
     }
     
@@ -86,10 +81,10 @@ extension  FilmListViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = MovieViewController()
-        if let title = movieViewModels[indexPath.item].title{
+        if let title = movieList[indexPath.item].title{
             vc.navigationItem.title = "\(String(describing: title))"
         }
-        vc.movieViewModel = movieViewModels[indexPath.item]
+        vc.movie = movieList[indexPath.item]
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

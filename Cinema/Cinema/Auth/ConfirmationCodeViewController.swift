@@ -2,7 +2,7 @@
 //  ConfirmationCodeViewController.swift
 //  Cashbuster
 //
-//  Created by Kazbek Borash on 3/4/19.
+//  Created by Nurzhigit Smailov on 5/7/19.
 //  Copyright © 2019 Inculerate. All rights reserved.
 //
 

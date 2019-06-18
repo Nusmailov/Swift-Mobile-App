@@ -10,9 +10,9 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class SearchMovieNetworkService{
+class MovieNetworkService{
     
-    static func getInfo(withText text: String, success: @escaping ([Movie]) -> Void, failure: @escaping (Error) -> Void) {
+    static func getSearchedMovies(withText text: String, success: @escaping ([Movie]) -> Void, failure: @escaping (Error) -> Void) {
         var newText: String
         if text.contains(" ") {
             newText = text.replacingOccurrences(of: " ", with: "%20")

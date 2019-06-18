@@ -12,7 +12,8 @@ class HistoryViewController: UIViewController {
     //MARK: - Properties
     let tableView = UITableView(frame: .zero)
     let cellId = "cellId"
-    var movieViewModels = [MovieViewModel]()
+    var movieList = [Movie]()
+    var movieViewModel: MovieViewModel?
     var refreshControl: UIRefreshControl?
     
     //MARK: - Lifecycle
@@ -28,10 +29,10 @@ class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = self.editButtonItem
+        movieViewModel = MovieViewModel()
         loadInfo()
         setupTableView()
         tableView.reloadData()
-        
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = .red
         refreshControl?.addTarget(self, action: #selector(loadInfo), for: .touchUpInside)
@@ -62,13 +63,10 @@ class HistoryViewController: UIViewController {
         let defaults = UserDefaults.standard
         let myarray = defaults.array(forKey: "movieidList")  as? [Int] ?? [Int]()
         for i in myarray{
-            MovieNetworkService.getInfo(withId: i, success: { (movie) in
-                self.movieViewModels.append(MovieViewModel(movie: movie))
+            movieViewModel!.getFilmById(idFilm: i, success: { (movie) in
+                self.movieList.append(movie)
                 self.tableView.reloadData()
-//                    self.refreshControl?.endRefreshing()/
-            }) { (error) in
-                print(error)
-            }
+            })
         }
         
         SVProgressHUD.dismiss()
@@ -85,15 +83,15 @@ class HistoryViewController: UIViewController {
 extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieViewModels.count
+        return movieList.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = MovieViewController()
-        if let title = movieViewModels[indexPath.item].title{
+        if let title = movieList[indexPath.item].title{
             vc.navigationItem.title = "\(String(describing: title))"
         }
-        vc.movieViewModel = movieViewModels[indexPath.item]
+        vc.movie = movieList[indexPath.item]
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -108,8 +106,8 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         cell.alpha = 0
         UIView.animate(withDuration: 0.6, animations: {/*cell.layer.transform = CATransform3DIdentity;*/ cell.alpha = 1})
         // datas
-        cell.movieImage.sd_setImage(with: movieViewModels[indexPath.item].getImageUrl())
-        cell.titleLabel.text = movieViewModels[indexPath.item].title
+        cell.movieImage.sd_setImage(with: movieList[indexPath.item].getImageUrl())
+        cell.titleLabel.text = movieList[indexPath.item].title
         return cell
     }
     
@@ -117,13 +115,12 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             let defaults = UserDefaults.standard
             var myarray = defaults.array(forKey: "movieidList")  as? [Int] ?? [Int]()
-            if myarray.contains(movieViewModels[indexPath.row].id){
-                myarray.remove(at: myarray.firstIndex(of: movieViewModels[indexPath.row].id)!)
+            if myarray.contains(movieList[indexPath.row].id){
+                myarray.remove(at: myarray.firstIndex(of: movieList[indexPath.row].id)!)
             }
             defaults.set(myarray, forKey: "movieidList")
-            movieViewModels.remove(at: indexPath.row)
+            movieList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
-    
 }

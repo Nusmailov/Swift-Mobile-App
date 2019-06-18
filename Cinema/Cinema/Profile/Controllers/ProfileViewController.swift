@@ -2,7 +2,7 @@
 //  ProfileVC.swift
 //  CashbusterV2
 //
-//  Created by Kazbek Borash on 3/27/19.
+//  Created by Nurzhigit Smailov on 5/7/19.
 //  Copyright © 2019 inculerate. All rights reserved.
 //
 

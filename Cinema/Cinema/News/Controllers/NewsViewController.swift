@@ -9,19 +9,23 @@
 import UIKit
 import SDWebImage
 import SVProgressHUD
+import RxCocoa
+import RxSwift
 
 class NewsViewController: UIViewController {
     // MARK: - Properties
-    var movieViewModels = [MovieViewModel]()
-    var filteredMovieViewModels = [MovieViewModel]()
+    var movieList = [Movie]()
+    var filteredListMovie = [Movie]()
     let tableView = UITableView(frame: .zero)
     let cellID = "MovieNewsID"
     var refreshControl: UIRefreshControl?
     private let searchController = UISearchController(searchResultsController: nil)
+    
     private var searchBarIsEmpty:Bool {
         guard let text = searchController.searchBar.text else{ return false }
         return text.isEmpty
     }
+    
     private var isFiltering:Bool {
         return searchController.isActive && !searchBarIsEmpty
     }
@@ -31,11 +35,11 @@ class NewsViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
-        self.navigationController?.navigationBar.barStyle = .blackTranslucent
         navigationItem.searchController = searchController
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationItem.title = "News"
+        self.navigationController?.navigationBar.barStyle = .blackTranslucent
     }
     
     override func viewDidLoad() {
@@ -45,7 +49,6 @@ class NewsViewController: UIViewController {
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = .red
         refreshControl?.addTarget(self, action: #selector(loadInfo), for: .touchUpInside)
-//        tableView.addSubview(refreshControl!)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Avengers"
@@ -63,17 +66,15 @@ class NewsViewController: UIViewController {
         tableView.separatorStyle = .none
         view.addSubview(tableView)
         tableView.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        tableView.keyboardDismissMode = .onDrag
     }
     
     // MARK: - Functions
     @objc func loadInfo() {
         SVProgressHUD.show()
-        NewsNetwork.getInfo(success: { (info) in
+        MovieNetworkService.getNewMovies(success: { (info) in
             SVProgressHUD.dismiss()
-            self.movieViewModels = info.map({ return
-                    MovieViewModel(movie: $0)
-                }
-            )
+            self.movieList = info
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }) { (error) in
@@ -88,23 +89,25 @@ class NewsViewController: UIViewController {
 extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
-            return filteredMovieViewModels.count
+            return filteredListMovie.count
         }
-        return movieViewModels.count
+        return movieList.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = MovieViewController()
-        var movie: MovieViewModel
+        var movie: Movie
+        
         if isFiltering {
-            movie = filteredMovieViewModels[indexPath.row]
+            movie = filteredListMovie[indexPath.row]
         } else {
-            movie = movieViewModels[indexPath.row]
+            movie = movieList[indexPath.row]
         }
+        
         if let title = movie.title {
             vc.navigationItem.title = "\(String(describing: title))"
         }
-        vc.movieViewModel = movie
+        vc.movie = movie
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -112,11 +115,11 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! MovieNewsTableViewCell
         tableView.rowHeight = view.frame.width
         cell.selectionStyle = .none
-        var movie: MovieViewModel
+        var movie: Movie
         if isFiltering {
-            movie = filteredMovieViewModels[indexPath.row]
+            movie = filteredListMovie[indexPath.row]
         } else {
-            movie = movieViewModels[indexPath.row]
+            movie = movieList[indexPath.row]
         }
         cell.movieImageView.sd_setImage(with: movie.getImageUrl())
         cell.nameLabel.text =  movie.title
@@ -146,18 +149,19 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension NewsViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        searchByText(text: searchController.searchBar.text!)
+        searchController.searchBar.rx.text.throttle(1.0, scheduler: MainScheduler.instance)
+        .distinctUntilChanged()
+            .subscribe {[weak self] (query) in
+                self?.searchByText(text: searchController.searchBar.text!)
+        }
     }
     
     private func searchByText(text: String) {
-        SearchMovieNetworkService.getInfo(withText: text, success: { [weak self] (filteredMovies) in
-            self?.filteredMovieViewModels = filteredMovies.map({ return
-                MovieViewModel(movie: $0)
-            })
+        MovieNetworkService.getSearchMovies(withText: text, success: { [weak self] (filteredMovies) in
+            self?.filteredListMovie = filteredMovies
             self?.tableView.reloadData()
         }) { (Error) in
             print(Error)
         }
     }
-    
 }

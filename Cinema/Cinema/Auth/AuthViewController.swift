@@ -2,7 +2,7 @@
 //  RegistrationViewController.swift
 //  Cashbuster
 //
-//  Created by Kazbek Borash on 2/28/19.
+//  Created by Nurzhigit Smailov on 5/7/19.
 //  Copyright © 2019 Inculerate. All rights reserved.
 //
 

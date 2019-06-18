@@ -9,7 +9,8 @@ target 'Cinema' do
   pod 'SwiftyJSON'
   pod 'Alamofire'
   pod 'SVProgressHUD'
-#  pod 'Gemini'
   pod 'SnapKit'
   pod 'SDWebImage'
+  pod 'RxSwift'
+  pod 'RxCocoa'
 end
