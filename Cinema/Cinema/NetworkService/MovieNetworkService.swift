@@ -30,7 +30,6 @@ class MovieNetworkService {
         }
     }
     
-    
     static func getSearchMovies(withText text: String, success: @escaping ([Movie]) -> Void, failure: @escaping (Error) -> Void) {
         var newText: String
         if text.contains(" ") {
@@ -59,7 +58,6 @@ class MovieNetworkService {
         }
     }
     
-    
     static func getNewMovies(success: @escaping ([Movie]) -> Void, failure: @escaping (Error) -> Void) {
         let url = URL.init(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=b593d4589446ff5105b0ae36eef4c312")
         let params = [String:Any]()
@@ -78,7 +76,6 @@ class MovieNetworkService {
                 }
         }
     }
-    
     
     static func getRandomMovie(success: @escaping (Movie) -> Void, failure: @escaping (Error) -> Void) {
         let number = Int.random(in: 0 ... 76341)

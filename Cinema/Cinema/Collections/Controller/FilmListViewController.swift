@@ -34,7 +34,7 @@ class FilmListViewController: UIViewController {
     }
     
     //MARK: - SetupViews
-    func setupCollectionView(){
+    func setupCollectionView() {
         let flowLayout = UPCarouselFlowLayout()
         flowLayout.itemSize = CGSize(width: UIScreen.main.bounds.size.width-60.0, height: view.frame.size.height-50)
         flowLayout.scrollDirection = .horizontal
@@ -61,7 +61,7 @@ class FilmListViewController: UIViewController {
 }
 
 //MARK: - Collection View Delegate
-extension  FilmListViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+extension  FilmListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movieList.count
     }
@@ -87,5 +87,4 @@ extension  FilmListViewController: UICollectionViewDelegate, UICollectionViewDat
         vc.movie = movieList[indexPath.item]
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
 }
